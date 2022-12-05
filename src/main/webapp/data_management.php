@@ -8,9 +8,9 @@ $end_time = $_POST['end_time'];
 $note = $_POST['note'];
 
 if (!empty($p_nr) || !empty($date) || !empty($start_time) || !empty($end_time)) {
-    $dbhost="localhost";
+    $dbhost="localhost:3307";
     $dbuser="root";
-    $dbpass="Zeiterfassung";
+    $dbpass="";
     $dbname="time_tracking";
     
     $connect = new mysqli($dbhost,$dbuser,$dbpass,$dbname);
@@ -19,7 +19,7 @@ if (!empty($p_nr) || !empty($date) || !empty($start_time) || !empty($end_time)) 
         die('Connect Error('. mysqli_connect_errno().')'. mysqli_connect_error());
     } else {
         $SELECT = "SELECT note From tracked_time Where note = ? Limit 1";
-        $INSERT = "INSERT INTO tracked_time (p_nr, date, start_time, pause_time, end_time, note) VALUES (?, ?, ?, ?, ?)";
+        $INSERT = "INSERT INTO tracked_time (p_nr, date, start_time, pause_time, end_time, note) VALUES (?, ?, ?, ?, ?, ?)";
         
         $stmt = $connect->prepare($SELECT);
         $stmt->bind_param("s", $note);
@@ -32,7 +32,7 @@ if (!empty($p_nr) || !empty($date) || !empty($start_time) || !empty($end_time)) 
             $stmt->close();
             
             $stmt=$connect->prepare($INSERT);
-            $stmt->bind_param("idttts", $p_nr, $date, $start_time, $pause_time, $end_time, $note);
+            $stmt->bind_param("isssss", $p_nr, $date, $start_time, $pause_time, $end_time, $note);
             $stmt->execute();
             echo "Daten erfolgreich eingetragen!";
         } else {

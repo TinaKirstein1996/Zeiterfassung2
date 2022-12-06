@@ -115,23 +115,3 @@ span.psw {
   float: right;
   padding-top: 16px;
 }
-
-
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#main {
-  transition: margin-left .5s;
-  padding: 20px;
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-  span.psw {
-     display: block;
-     float: none;
-  }
-  .cancelbtn {
-     width: 100%;
-  }
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}

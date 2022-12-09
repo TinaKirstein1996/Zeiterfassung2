@@ -83,3 +83,8 @@
 .days li.active::before{
 	background: #208ef5;
 }
+
+.tracked_time{
+	text-align: left;
+	margin: 10px 35px;
+}

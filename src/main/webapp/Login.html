@@ -15,28 +15,20 @@
 <body>
 
 	<h2>Arbeitszeiterfassung</h2>
-
-	<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
-
-	<div id="id01" class="modal">
 	  
-		<form class="modal-content animate" action="Dashboard.html" method="post">
-	    	<div class="imgcontainer">
-	      		<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-	      		<img src="technoform.png" alt="Technoform-Logo" class="avatar" style="width:256px;height:150px;">
-	    	</div>
-	
+		<form class="modal-content animate" action="login.php" method="post">
+	  
 	    	<div class="container">
-	      		<label for="uname"><b>Benutzername</b></label>
-	      		<input type="text" placeholder="Bitte Benuternamen eingeben" name="uname" required>
+	      		<label for="uname"><b>Personalnummer</b></label>
+	      		<input type="text" placeholder="Bitte Personalnummer eingeben" name="p_nr" required>
+	      		
+	      		<br>
 	
 	      		<label for="psw"><b>Passwort</b></label>
-	      		<input type="password" placeholder="Bitte Passwort eingeben" name="psw" required>
+	      		<input type="password" placeholder="Bitte Passwort eingeben" name="password" required>
 	        
 	      		<button type="submit">Einloggen</button>
-	      		<label>
-	        	<input type="checkbox" checked="checked" name="remember"> Daten speichern
-	      		</label>
+
 	    	</div>
 	
 	    	<div class="container" style="background-color:#f1f1f1">
@@ -44,8 +36,6 @@
 	      		<span class="psw"><a href="registrierung.html">Neuer Benutzer?</a></span>
 	    	</div>
 	  	</form>
-	</div>
-
 
 </body>
 </html>

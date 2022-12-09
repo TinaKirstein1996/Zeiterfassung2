@@ -48,7 +48,7 @@ if (!empty($p_nr) || !empty($email) || !empty($password) || !empty($password2)) 
             $stmt->close();
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
             $stmt=$connect->prepare($INSERT);
-            $stmt->bind_param("ississs", $p_nr, $email, $password, $weekly_workinghours, $start_time, $end_time, $pause_time);
+            $stmt->bind_param("ississs", $p_nr, $email, $password_hash, $weekly_workinghours, $start_time, $end_time, $pause_time);
             $stmt->execute();
             echo 'Registrierung erfolgreich abgeschlossen! <a href="Login.html">Zum Login</a>';
         } else {

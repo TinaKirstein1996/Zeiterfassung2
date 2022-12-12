@@ -8,10 +8,10 @@ $end_time = $_POST['end_time'];
 $note = $_POST['note'];
 
 if (!empty($p_nr) || !empty($date) || !empty($start_time) || !empty($end_time)) {
-    $dbhost="localhost:3307";
-    $dbuser="root";
-    $dbpass="";
-    $dbname="time_tracking";
+    $dbhost="rdbms.strato.de";
+    $dbuser="dbu433728";
+    $dbpass="projektarbeit";
+    $dbname="dbs9413900";
     
     $connect = new mysqli($dbhost,$dbuser,$dbpass,$dbname);
     

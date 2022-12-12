@@ -5,6 +5,7 @@
 <head>
 	<meta charset = "utf-8">
     <title>Zeiterfassungs-Anwendung</title>
+    <link rel="stylesheet" href = "dashboardaufbau.css">   
     <link rel="stylesheet" href = "style.css">
     <link rel="stylesheet" href = "calendar.css">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,88 +15,110 @@
  	<script src="menu.js" defer></script>
  </head>
  
- <body>
+<body style="background-color: #fff">
  
- 	<header>
- 		<h2>Arbeitszeiterfassung</h2>
-    	<div id="current_date"></div>
-    </header>
+	<div class="header"> 
+	 	<header>
+	 		<h2>Arbeitszeiterfassung</h2>
+	    	<div id="current_date"></div>
+	    </header>
+	</div> 
     
-    <br>
-    <br>
-    
-    <div>
-    	<button class=quicktrackingbtn style="width:auto;">Schnellerfassung</button>
-    </div>
-    
-    <br>
-    <br>
-    
-    <!-- Form for inserting a tracked time into the database -->
-    <form action="data_management.php" method="POST">
-    	<table>
-	  		<!-- Personalnummer nur zu Testzwecken enthalten -->
-	  		<tr>
-        		<td width="150">Personalnummer:</td>
-        		<td><input type="number" size="14" name="p_nr" required></td>
-      		</tr>
-      		<tr>
-        		<td width="150"><label for="date">Datum: </label></td>
-        		<td><input type="date" size="60" name="date" required></td>
-      		</tr>
-      		<tr>
-        		<td width="150">Beginn: </td> 
-        		<td><input type="time" size="14" name="start_time" required></td>
-        	<tr>
-        		<td width="150">Pause: </td> 
-        		<td><input type="time" size="14" name="pause_time"></td>
-      		</tr> 
-      		<tr>
-        		<td width="150">Ende: </td> 
-        		<td><input type="time" size="14" name="end_time" required></td>
-      		</tr>
-      		<tr>
-        		<td width="150">Notiz: </td> 
-        		<td><input type="text" size="14" name="note"></td>
-      		</tr>
-      		<tr>
-        		<td><input type="submit" name="gesendet" value="senden"></td>
-      		</tr>
-		</table>
-	</form>
-    
-    <!-- Calender for time tracking -->
-	<div class="calendar_wrapper">
-		<p class="current-date"></p>
-		<div class="icons">
-			<span id = "prev" class="material-symbols-rounded">chevron_left</span>
-      		<span id= "next" class="material-symbols-rounded">chevron_right</span>
-    	</div>
-      
-    	<div class="calendar">
-    		<ul class="weeks">
-        		<li>Mo</li>
-        		<li>Di</li>
-        		<li>Mi</li>
-        		<li>Do</li>
-        		<li>Fr</li>
-        		<li>Sa</li>
-        		<li>So</li>
-      		</ul>
-      		<ul class="days"></ul>
-    	</div>
-    
-    	<div class="tracked_time">
-    		<p> Datum: </p>
-      		<p> Beginn: </p>
-      		<p> Ende: </p>
-      		<p> Pause: </p>
-      		<p> Notiz: </p>
-    	</div>
-    	
-    </div>
-    <div id="main">
-    </div>
+    <div class="row">
+  		<div class="col-3 col-s-3 menu">
+    		
+		    <div> <button class=quicktrackingbtn style="width:auto;">Schnellerfassung</button> </div>
+   
+		    
+		    <!-- Form for inserting a tracked time into the database -->
+		    <form action="data_management.php" method="POST">
+		    	<table>
+			  		<!-- Personalnummer nur zu Testzwecken enthalten -->
+			  		<tr>
+		        		<td width="150">Personalnummer:</td>
+		        		<td><input type="number" size="14" name="p_nr" required></td>
+		      		</tr>
+		      		<tr>
+		        		<td width="150"><label for="date">Datum: </label></td>
+		        		<td><input type="date" size="60" name="date" required></td>
+		      		</tr>
+		      		<tr>
+		        		<td width="150">Beginn: </td> 
+		        		<td><input type="time" size="14" name="start_time" required></td>
+		        	<tr>
+		        		<td width="150">Pause: </td> 
+		        		<td><input type="time" size="14" name="pause_time"></td>
+		      		</tr> 
+		      		<tr>
+		        		<td width="150">Ende: </td> 
+		        		<td><input type="time" size="14" name="end_time" required></td>
+		      		</tr>
+		      		<tr>
+		        		<td width="150">Notiz: </td> 
+		        		<td><input type="text" size="14" name="note"></td>
+		      		</tr>
+		      		<tr>
+		        		<td><input type="submit" name="gesendet" value="senden"></td>
+		      		</tr>
+				</table>
+			</form>
+			
+  		</div>
+  		
+  		<div class="col-6 col-s-9">
+  		
+  		<h1>Mitte</h1>
+  		
+  		
+		    
+		    <!-- Calender for time tracking -->
+			<div class="calendar_wrapper">
+				<p class="current-date"></p>
+				<div class="icons">
+					<span id = "prev" class="material-symbols-rounded">chevron_left</span>
+		      		<span id= "next" class="material-symbols-rounded">chevron_right</span>
+		    	</div>
+		      
+		    	<div class="calendar">
+		    		<ul class="weeks">
+		        		<li>Mo</li>
+		        		<li>Di</li>
+		        		<li>Mi</li>
+		        		<li>Do</li>
+		        		<li>Fr</li>
+		        		<li>Sa</li>
+		        		<li>So</li>
+		      		</ul>
+		      		<ul class="days"></ul>
+		    	</div>
+		    
+		    	<div class="tracked_time">
+		    		<p> Datum: </p>
+		      		<p> Beginn: </p>
+		      		<p> Ende: </p>
+		      		<p> Pause: </p>
+		      		<p> Notiz: </p>
+		    	</div>
+		    	
+		    </div>
+		    <div id="main"> </div>
+		    <div class="col-3 col-s-12">
+    		<div class="aside">
+  			<h2> Stammdaten</h2>
+  			<p> Link zu den Zeitarbeitsgesetzen</p>
+  			<p><a href="https://www.gesetze-im-internet.de/arbzg/BJNR117100994.html">Arbeitszeitgesetz</a></p>
+
+   		 	</div>
+  		</div>
+	</div>
+	</div>
+	
+	<div class="footer">
+  		<p>Fußzeile</p>
+	</div>
+		    
+		   
+		    
 
   </body>
 </html>

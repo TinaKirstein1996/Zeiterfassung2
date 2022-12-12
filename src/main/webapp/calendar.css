@@ -8,7 +8,7 @@
     flex-flow: row wrap;
     width: 450px;
     border-radius: 10px;
-    background: black
+    background: #fff
 }
 
 .calendar_wrapper > * {
@@ -18,7 +18,7 @@
 .current-date{
 	font-size: 1.45rem;
 	font-weight: 500;
-	color: rgba(255, 255, 255, 1);
+	color: black;
 }
 .icons span{
 	height: 38px;

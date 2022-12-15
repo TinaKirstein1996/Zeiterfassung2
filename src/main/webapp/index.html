@@ -1,16 +1,33 @@
-<!DOCTYPE html>  
-<html>  
-<head>  
+<!DOCTYPE html>
+<html>
+<head>
 <meta charset="UTF-8">
-<title>First Web Application</title>  
-</head>  
-<body>  
-<h1>Welcome</h1>  
-<ul>  
-  <li><a href="#">Home</a></li>  
-  <li><a href="#">News</a></li>  
-  <li><a href="#">Contact</a></li>  
-  <li><a href="#">About</a></li>  
-</ul>  
-</body>  
-</html>  
+<title>Zeiterfassungs Kalender</title>
+
+<link rel="stylesheet" href = "css/calendarStyle.css">
+<link rel="stylesheet" href = "js/fullcalendar/lib/main.css">
+
+<script src="js/sweetalert2.all.min.js" defer></script>
+<script src="js/fullcalendar/lib/main.js" defer></script>
+
+<script> 
+document.addEventListener('DOMContentLoaded', function() {
+	var calendarEl = document.getElementById('calendar');
+	var calendar = new FullCalendar.Calendar(calendar.El, {
+		initialView: 'dayGridMonth',
+		height: 650,
+		events: 'fetchEvents.php'
+	});
+	calendar.render();
+});
+</script>
+</head>
+
+<body>
+<div class = "container">
+	<div class= "wrapper">
+		<div id= "calendar"></div>
+	</div>
+</div>
+</body>
+</html>

@@ -39,7 +39,6 @@ if (!empty($date) || !empty($start_time) || !empty($end_time)) {
             header('Location: http://zeiterfassung-wbh.de/Dashboard.html');
             exit;
         } else {
-            echo "Diese Personalnummer ist leider nicht verfügbar";
             header('Location: http://zeiterfassung-wbh.de/Dashboard.html');
             exit;
         }

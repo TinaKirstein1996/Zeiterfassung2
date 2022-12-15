@@ -33,12 +33,12 @@ if(isset($_GET['login'])) {
 <head>
 <meta charset = "utf-8">
 <title>Zeiterfassungs-Anwendung</title>
-<link rel="stylesheet" href = "loginStyle.css">
+<link rel="stylesheet" href = "css/loginStyle.css">
 <link rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Google font link -->
 <link rel = "stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-<script src="login.js" defer></script>
+<script src="js/login.js" defer></script>
 </head>
 
 <body>
@@ -69,7 +69,7 @@ if(isset($errorMessage)) {
 
 <div class="container" style="background-color:#f1f1f1">
 <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Abbrechen</button>
-<span class="psw"><a href="Registrierung.html">Neuer Benutzer?</a></span>
+<span class="psw"><a href="registration.php">Neuer Benutzer?</a></span>
 </div>
 </form>
 

@@ -25,6 +25,7 @@
 	</div> 
     
     <div class="row">
+<!-- Begibn Linke spalte -->	    
   		<div class="col-5 col-s-6 menu">
     		
 		    <div> <button class=quicktrackingbtn style="width:auto;">Schnellerfassung</button> </div>
@@ -58,12 +59,56 @@
 		      		</tr>
 				</table>
 			</form>
+		<!-- Start Neu eingefügt soll oben ersetzen wenn es fertig ist -->
+        <form>
+            
+              <p class="fallbackLabel">
+              </p>
+              <div class="fallbackTimePicker">
+                <div>
+                  <span>
+                    <label for="hour_start">Beginn:</label>
+                    <select id="hour_start" name="hour_start"></select>
+                  </span>
+                  <span>
+                    <label for="minute_start">:</label>
+                    <select id="minute_start" name="minute_start"></select>
+                  </span>
+                </div>
+                 <div>
+                  <span>
+                    <label for="hour_pause">Pause:</label>
+                    <select id="hour_pause" name="hour_pause"></select>
+                  </span>
+                  <span>
+                    <label for="minute_start">:</label>
+                    <select id="minute_pause" name="max_pause"></select>
+                  </span>
+                </div>
+                <div>
+                  <span>
+                    <label for="hour_end">Ende:</label>
+                    <select id="hour_end" name="hour_end"></select>
+                  </span>
+                  <span>
+                    <label for="minute_end">:</label>
+                    <select id="minute_end" name="minute_end"></select>
+                  </span>
+                  <button  id="submitButtonTest" >Eingabe speichern</button>
+                </div>
+
+              </div>
+              
+          </form>			
+		<!-- Ende Neu eingefügt soll oben ersetzen wenn es fertig ist -->			
 			
   		</div>
-  		
+<!-- Ende Linke spalte -->
+	    
+<!-- Begibn Mittlere spalte -->    		
   		<div class="col-4 col-s-6">
   		
-  		<h1>Mitte</h1>
+
   		
   		
 		    
@@ -100,6 +145,8 @@
 			</div>	
 		    </div>
 		    <div id="main"> </div>
+<!-- Ende Mittlere spalte -->
+<!-- Begibn Rechte spalte -->
 		    <div class="col-3 col-s-12">
     		<div class="aside">
   			<h2> Stammdaten</h2>
@@ -109,12 +156,169 @@
    		 	</div>
   		</div>
 	</div>
-	
+<!-- Ende Rechte spalte -->
+<!-- Begibn Fuß spalte -->	
 	<div class="footer">
   		<p>Fußzeile</p>
 	</div>
+<!-- Ende Fuß spalte -->	
 		    
-		   
+<!-- Zeiteingabe muss noch in JS -->
+
+<script>
+            //const nativePicker = document.querySelector('.nativeTimePicker');
+const fallbackPicker = document.querySelector('.fallbackTimePicker');
+const fallbackLabel = document.querySelector('.fallbackLabel');
+
+const hourSelect_start = document.querySelector('#hour_start');
+const minuteSelect_start = document.querySelector('#minute_start');
+const hourSelect_end = document.querySelector('#hour_end');
+const minuteSelect_end = document.querySelector('#minute_end');
+const hourSelect_pause = document.querySelector('#hour_pause');
+const minuteSelect_pause = document.querySelector('#minute_pause');
+const submitButtonTest = document.querySelector('#submitButtonTest');
+
+
+hourSelect_end.disabled = true;
+minuteSelect_end.disabled = true;
+submitButtonTest.disabled=true;
+
+  fallbackPicker.style.display = 'block';
+  fallbackLabel.style.display = 'block';
+
+  // Populate the hours and minutes dynamically
+  populateHours(hourSelect_start);
+  populateMinutes(minuteSelect_start);
+
+
+function populateHours(hourSelect,start=0,end=23) {
+  // Populate the hours <select> with the 6 open hours of the day
+    let options = hourSelect.getElementsByTagName('option');
+
+for (var i=options.length; i--;) {
+    hourSelect.removeChild(options[i]);
+}
+    for (let i = start; i <= end; i++) {
+    const option = document.createElement('option');
+    option.textContent = i;
+    hourSelect.appendChild(option);
+  }
+}
+
+function populateMinutes(minuteSelect,start_min=0,end_min=59) {
+  // populate the minutes <select> with the 60 hours of each minute
+    let options = minuteSelect.getElementsByTagName('option');
+
+for (var i=options.length; i--;) {
+    minuteSelect.removeChild(options[i]);
+}
+    for (let i = start_min; i <= end_min; i++) {
+    const option = document.createElement('option');
+    option.textContent = (i < 10) ? `0${i}` : i;
+    minuteSelect.appendChild(option);
+  }
+}
+
+// make it so that if the hour is 18, the minutes value is set to 00
+// — you can't select times past 18:00
+ function setMinutesToZero() {
+   if (hourSelect.value === '18') {
+     minuteSelect.value = '00';
+   }
+ }
+
+ function setEndSelectableTime(){
+    if((hourSelect_start.value||hourSelect_start.value==0)&&minuteSelect_start.value){
+        hourSelect_end.disabled=false;
+        minuteSelect_end.disabled=false;
+        submitButtonTest.disabled=false;
+        populateHours(hourSelect_end,start=hourSelect_start.value);
+        populateMinutes(minuteSelect_end);
+    }
+    else{
+        hourSelect_end.disabled=true;
+        minuteSelect_end.disabled=true;
+        submitButtonTest.disabled=true;
+        hourSelect_end.value=undefined;
+        minuteSelect_end.value=undefined;
+        
+    }
+}
+function CheckPossibleEndMinutes(){
+    if(hourSelect_end.value==hourSelect_start.value){
+        populateMinutes(minuteSelect_end,start_min=Number(minuteSelect_start.value));
+        
+    }
+    else{
+        populateMinutes(minuteSelect_end);
+
+    }
+}
+hourSelect_end.onchange = ()=>{
+    CheckPossibleEndMinutes();
+}
+
+hourSelect_start.onchange = ()=>{
+    setEndSelectableTime();
+    CheckPossibleEndMinutes();
+ }
+ minuteSelect_start.onchange = ()=>{
+    setEndSelectableTime();
+    CheckPossibleEndMinutes();
+ }
+
+ 
+ 
+ 
+ 
+ 
+ //muss noch realisiert werden
+ function CheckPossiblePausehours(){  
+
+ }
+ 
+ function CheckPossiblePauseMinutes(){  
+
+}
+
+ 
+ 
+ 
+ 
+ 
+ 
+//Funktion, die den Submit abfängt/durchführt
+submitButtonTest.onclick= ()=>{
+  console.log("Clicked")
+  let startTime = (hourSelect_start.value<10?"0":"")+String(hourSelect_start.value)+":"+(Number(minuteSelect_start.value)<10?"0":"")+String(Number(minuteSelect_start.value));
+  let endTime = (hourSelect_end.value<10?"0":"")+String(hourSelect_end.value)+":"+(Number(minuteSelect_end.value)<10?"0":"")+String(Number(minuteSelect_end.value));
+  let startAsDateObject = new Date('1970-01-01T' + startTime + ':00Z');
+  let endAsDateObject = new Date('1970-01-01T' + endTime + ':00Z');
+  console.log(startTime,endTime)
+  let gearbeiteteZeit = endAsDateObject.getTime()-startAsDateObject.getTime();
+  console.log(gearbeiteteZeit,endAsDateObject.getTime(),startAsDateObject.getTime())
+  
+  const sendToDB = async () => {
+  const rawResponse = await fetch('/euerPHP_Endpoint.php', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({workingDuration:gearbeiteteZeit}) //Übergibt die gearbeitete Zeit in Millisekunden, vermutlich ist es noch sinnvoll die BenutzerIdentität mit zu schicken, damit das richtig in der DB gespeichert werden kann.
+  });
+  const content = await rawResponse.json();
+
+  console.log(content); //gibt die Antwort der PHP seite in der Browser Console aus
+};
+sendToDB();
+
+}
+
+ //hourSelect.onchange = setMinutesToZero;
+ //minuteSelect.onchange = setMinutesToZero;
+          </script>
+<!-- Ende Scrippt -->		   
 		    
 
   </body>

@@ -64,9 +64,67 @@
 				</table>
 			</form>		
 		<!-- Start Neu eingefügt soll oben ersetzen wenn es fertig ist -->	
-        
-        
-        
+		    	<table>
+			  		<!-- Personalnummer nur zu Testzwecken enthalten -->
+        <!-- Datum -->		      		
+		      		<tr>
+		        		<td width="150">
+		        		<label for="date">Datum: </label>
+		        		</td>
+		        		<td>
+		        		<input type="date" size="60" name="date" required>
+		        		</td>
+		      		</tr>
+        <!-- Start -->
+		      		<tr>
+		        		<td width="150">
+                    		<label for="hour_start">Beginn:</label>
+
+		        		</td> 
+		        		<td>
+                    		<select id="hour_start" name="hour_start"></select> 
+                    		<label for="minute_start">:</label>
+                    		<select id="minute_start" name="minute_start"></select>
+		        		</td>
+         <!-- Pause -->
+		        	<tr>
+		        		<td width="150">
+                    		<label for="hour_pause">Pause:</label>
+		        		</td> 
+		        		<td>
+                    		<select id="hour_pause" name="hour_pause"></select>
+                    		<label for="minute_pause">:</label>
+                    		<select id="minute_pause" name="max_pause"></select>                    
+		        		</td>
+		      		</tr>
+        <!-- Ende -->
+		      		<tr>
+		        		<td width="150">
+		        		    <label for="hour_end">Ende:</label> 
+		        		</td> 
+		        		<td>
+                    		<select id="hour_end" name="hour_end"></select>
+                    		<label for="minute_end">:</label>
+                    		<select id="minute_end" name="minute_end"></select>
+		        		</td>
+		      		</tr>
+        <!-- Notizen -->
+		      		<tr>
+		        		<td width="150">Notiz: 
+		        		</td> 
+		        		<td>
+		        		<input type="text" size="14" name="note">
+		        		</td>
+		      		</tr>
+        <!-- Senden -->
+		      		<tr>
+		        		<td>
+		        		<button  id="submitButtonTest" style="width:auto;" >Eingabe speichern</button>
+		        		</td>
+		      		</tr>
+				</table>        
+   	     
+          
 <form action="data_management.php" method="POST">        
         <form>
            
@@ -75,12 +133,14 @@
               <div class="fallbackTimePicker">
                 <div>
         <!-- Datum -->
+
                 <div>
                   <span>
                   <span> <label for="date">Datum: </label></span>
                     <input type="date">
                   </span>
                 </div>
+
         <!-- Start -->
                   <span>
                     <label for="hour_start">Beginn:</label>
@@ -127,6 +187,7 @@
               
           </form>
     </form>
+    
 		<!-- Ende Neu eingefügt soll oben ersetzen wenn es fertig ist -->	
 
   		</div>

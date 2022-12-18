@@ -65,6 +65,13 @@
 			</form>		
 		<!-- Start Neu eingefügt soll oben ersetzen wenn es fertig ist -->	
 		    	<table>
+		    	<form action="data_management.php" method="POST">        
+        <form>
+           
+              <p class="fallbackLabel">
+              </p>
+              <div class="fallbackTimePicker">
+                <div>
 			  		<!-- Personalnummer nur zu Testzwecken enthalten -->
         <!-- Datum -->		      		
 		      		<tr>
@@ -125,68 +132,7 @@
 				</table>        
    	     
           
-<form action="data_management.php" method="POST">        
-        <form>
-           
-              <p class="fallbackLabel">
-              </p>
-              <div class="fallbackTimePicker">
-                <div>
-        <!-- Datum -->
 
-                <div>
-                  <span>
-                  <span> <label for="date">Datum: </label></span>
-                    <input type="date">
-                  </span>
-                </div>
-
-        <!-- Start -->
-                  <span>
-                    <label for="hour_start">Beginn:</label>
-                    <select id="hour_start" name="hour_start"></select>
-                  </span>
-                  <span>
-                    <label for="minute_start">:</label>
-                    <select id="minute_start" name="minute_start"></select>
-                  </span>
-                </div>
-         <!-- Pause -->
-                 <div>
-                  <span>
-                    <label for="hour_pause">Pause:</label>
-                    <select id="hour_pause" name="hour_pause"></select>
-                  </span>
-                  <span>
-                    <label for="minute_pause">:</label>
-                    <select id="minute_pause" name="max_pause"></select>
-                  </span>
-                </div>
-        <!-- Ende -->
-                <div>
-                  <span>
-                    <label for="hour_end">Ende:</label>
-                    <select id="hour_end" name="hour_end"></select>
-                  </span>
-                  <span>
-                    <label for="minute_end">:</label>
-                    <select id="minute_end" name="minute_end"></select>
-                  </span>
-                </div>
-        <!-- Notizen -->
-                <div>
-                  <span>
-                  <span> Notizen:</span>
-                    <input type="text">
-                  </span>
-                </div>
-                                
-                   <button  id="submitButtonTest" >Eingabe speichern</button>              
-
-              </div>
-              
-          </form>
-    </form>
     
 		<!-- Ende Neu eingefügt soll oben ersetzen wenn es fertig ist -->	
 
@@ -356,15 +302,18 @@ function CheckPossibleEndMinutes(){
 }
 hourSelect_end.onchange = ()=>{
     CheckPossibleEndMinutes();
+    setPauseSelectableTime();
 }
 
 hourSelect_start.onchange = ()=>{
     setEndSelectableTime();
     CheckPossibleEndMinutes();
+    setPauseSelectableTime();
  }
  minuteSelect_start.onchange = ()=>{
     setEndSelectableTime();
     CheckPossibleEndMinutes();
+    setPauseSelectableTime();
  }
 
  
@@ -378,8 +327,12 @@ hourSelect_start.onchange = ()=>{
         hourSelect_pause.disabled=false;
         minuteSelect_pause.disabled=false;
         submitButtonTest.disabled=false;
-        populateHours(hourSelect_pause,start==0);
-        populateMinutes(minuteSelect_pause);
+        minZeit = 0
+        maxZeit = hourSelect_end.value - hourSelect_start.value
+        populateHours(hourSelect_pause, start=minZeit, end=maxZeit);
+        minZeit = 0
+        maxZeit = 59
+        populateMinutes (minuteSelect_pause, start=minZeit, end=maxZeit);
     }
     else{
         hourSelect_pause.disabled=true;
@@ -387,47 +340,35 @@ hourSelect_start.onchange = ()=>{
         submitButtonTest.disabled=true;
         hourSelect_pause.value=undefined;
         minuteSelect_pause.value=undefined;
+        hourSelect_start.value!=undefined
         
     }
 }
- function CheckPossiblePauseMinutes(){
-	    if(hourSelect_pause.value==(hourSelect_end.value-hourSelect_start.value)){
-	        populateMinutes(minuteSelect_end,start_min=Number(minuteSelect_start.value));
+ function populsteHoursPause(){
+	    if(hourSelect_pause, start = 0){
+	        
 	        
 	    }
 	    else{
-	        populateMinutes(minuteSelect_end);
-
-	    }
-	}
-	hourSelect_end.onchange = ()=>{
-	    CheckPossibleEndMinutes();
-	}
-
-	hourSelect_start.onchange = ()=>{
-	    setEndSelectableTime();
-	    CheckPossibleEndMinutes();
-	 }
-	 minuteSelect_start.onchange = ()=>{
-	    setEndSelectableTime();
-	    CheckPossibleEndMinutes();
-	 }
-
- 
- 
- 
- 
- 
- 
- 
- 
- function CheckPossiblePausehours(){  
-
- }
- 
- function CheckPossiblePauseMinutes(){  
-
+	    	end=maximaleStundenanzahl;
+	    }   
 }
+	
+ maximaleStundenanzahl = hourSelect_end.value - hourSelect_start.value
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
 
  
  

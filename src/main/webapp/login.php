@@ -20,7 +20,7 @@ if(isset($_GET['login'])) {
     //Überprüfung des Passworts
     if ($user !== false && password_verify($password, $user['password'])) {
         $_SESSION['userid'] = $user['id'];
-        die('Login erfolgreich. Weiter zu <a href="Dashboard.html">internen Bereich</a>');
+        die(header('Location: http://zeiterfassung-wbh.de/Dashboard.html'));
     } else {
         $errorMessage = 'Personalnummer oder Passwort bitte überprüfen. Weiter zum <a href="Login.html">Login</a><br>';
     }

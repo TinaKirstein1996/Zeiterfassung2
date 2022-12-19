@@ -22,7 +22,8 @@ if (!empty($date) || !empty($start_time) || !empty($end_time)) {
         
         $SELECT = "SELECT note From tracked_time Where note = ? Limit 1";
         $SELECTp_nr = "SELECT p_nr From users Where id = ? Limit 1";
-        $INSERT = "INSERT INTO tracked_time (p_nr, date, start_time, pause_time, end_time, note) VALUES (?, ?, ?, ?, ?, ?)";
+        $INSERT = "INSERT INTO tracked_time (title, p_nr, date, start_time, pause_time, end_time, note) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        
         
         $stmt = $connect->prepare($SELECTp_nr);
         $stmt->bind_param("i", $userid);
@@ -33,8 +34,10 @@ if (!empty($date) || !empty($start_time) || !empty($end_time)) {
         if ($p_nr!==0) {
             $stmt->close();
             
+            $title="Arbeitszeiterfassung ".$_POST['date']."  ";
+            
             $stmt=$connect->prepare($INSERT);
-            $stmt->bind_param("isssss", $p_nr, $date, $start_time, $pause_time, $end_time, $note);
+            $stmt->bind_param("sisssss",$title, $p_nr, $date, $start_time, $pause_time, $end_time, $note);
             $stmt->execute();
             header('Location: http://zeiterfassung-wbh.de/Dashboard.html');
             exit;

@@ -16,9 +16,14 @@
 }
 
 .current-date{
+	text-align: center;
 	font-size: 1.45rem;
 	font-weight: 500;
 	color: black;
+	
+}
+.icons{
+	text-align: center;
 }
 .icons span{
 	height: 38px;

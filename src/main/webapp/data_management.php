@@ -3,12 +3,15 @@ session_start();
 
 $userid = $_SESSION['userid'];
 $date = $_POST['date'];
-$start_time = $_POST['start_time'];
-$pause_time = $_POST['pause_time'];
-$end_time = $_POST['end_time'];
+$start_time_hour = $_POST['hour_start'];
+$start_time_minute = $_POST['minute_start'];
+$pause_time_start = $_POST['hour_pause'];
+$pause_time_minute = $_POST['max_pause'];
+$end_time_hour = $_POST['hour_end'];
+$end_time_hour = $_POST['minute_end'];
 $note = $_POST['note'];
 
-if (!empty($date) || !empty($start_time) || !empty($end_time)) {
+if (!empty($date) || !empty($start_time_hour) || !empty($end_time_hour)) {
     $dbhost="rdbms.strato.de";
     $dbuser="dbu433728";
     $dbpass="projektarbeit";
@@ -35,8 +38,12 @@ if (!empty($date) || !empty($start_time) || !empty($end_time)) {
             $stmt->close();
             
             $title="Arbeitszeiterfassung ".$_POST['date']."  ";
-            $worked_start = $_POST['date']." ".$_POST['start_time'].":00 ";
-            $worked_end = $_POST['date']." ".$_POST['end_time'].":00 ";
+            $start_time = $_POST['hour_start'].":".$_POST['minute_start'];
+            $pause_time = $_POST['hour_pause'].":".$_POST['max_pause'];
+            $end_time = $_POST['hour_end'].":".$_POST['minute_end'];
+            
+            $worked_start = $_POST['date']." ".$start_time;
+            $worked_end = $_POST['date']." ".$end_time;
             $starttimestamp = strtotime($worked_start);
             $endtimestamp = strtotime($worked_end);
             

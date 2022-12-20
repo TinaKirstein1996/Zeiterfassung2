@@ -50,14 +50,26 @@ if (!empty($date) || !empty($start_time_hour) || !empty($end_time_hour)) {
             function differenceInHours($worked_start,$worked_end){
                 $starttimestamp = strtotime($worked_start);
                 $endtimestamp = strtotime($worked_end);
-                $difference = abs(($endtimestamp - $starttimestamp)/3600);
+                $differenceHours = abs(($endtimestamp - $starttimestamp)/3600);
+                $differenceMinutes = abs(($endtimestamp - $starttimestamp)/60);
+                if ($differenceMinutes % 60 != 0){
+                    $differenceHours = floor($differenceHours);
+                    if ($differenceMinutes % 60 <= 9) {
+                        $differenceMinutes = "0".($differenceMinutes % 60);
+                    } else {
+                        $differenceMinutes = ($differenceMinutes % 60);
+                    }
+                } else {
+                    $differenceMinutes = "00";
+                }
+                $difference = $differenceHours.":".$differenceMinutes.":00";
                 return $difference;
             }
             
             $working_hours = differenceInHours($worked_start,$worked_end);
             
             $stmt=$connect->prepare($INSERT);
-            $stmt->bind_param("sissssss",$title, $p_nr, $date, $start_time, $pause_time, $end_time, $starttimestamp, $working_hours);
+            $stmt->bind_param("sissssss",$title, $p_nr, $date, $start_time, $pause_time, $end_time, $working_hours, $working_hours);
             $stmt->execute();
             header('Location: http://zeiterfassung-wbh.de/Dashboard.html');
             exit;

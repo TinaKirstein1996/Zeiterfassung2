@@ -32,16 +32,9 @@
 <!-- Begibn Linke spalte -->
   		<div class="col-5 col-s-6 menu">
     		
-		    <div> <button class=quicktrackingbtn style="width:auto;">Schnellerfassung</button> </div>
-   <button onclick="displayDate()">Schnellerfassung</button>
-<p id="Startzeitpunkt"></p>
 
-<!-- Start/Stop Zeiterfassung -->
- 			<button onclick="document.getElementById('Start').innerHTML=Date()">Start</button>
-<button onclick="document.getElementById('Stop').innerHTML=Date()">Stop</button>
-<p></p>
-Start<p id="Start"></p>
-Stop<p id="Stop"></p>
+
+
 <!-- Start/Stop Zeiterfassung   12 -->
   <center>
     <div id="timer">
@@ -56,37 +49,7 @@ Stop<p id="Stop"></p>
     </div>
   </center>
 
-
-
-		    
-		    <!-- Form for inserting a tracked time into the database -->		    
-		    <form action="data_management.php" method="POST">
-		    	<table>
-			  		<!-- Personalnummer nur zu Testzwecken enthalten -->
-		      		<tr>
-		        		<td width="150"><label for="date">Datum: </label></td>
-		        		<td><input type="date" size="60" name="date" required></td>
-		      		</tr>
-		      		<tr>
-		        		<td width="150">Beginn: </td> 
-		        		<td><input type="time" size="14" name="start_time" required></td>
-		        	<tr>
-		        		<td width="150">Pause: </td> 
-		        		<td><input type="time" size="14" name="pause_time"></td>
-		      		</tr> 
-		      		<tr>
-		        		<td width="150">Ende: </td> 
-		        		<td><input type="time" size="14" name="end_time" required></td>
-		      		</tr>
-		      		<tr>
-		        		<td width="150">Notiz: </td> 
-		        		<td><input type="text" size="14" name="note"></td>
-		      		</tr>
-		      		<tr>
-		        		<td><input type="submit" name="gesendet" value="senden"></td>
-		      		</tr>
-				</table>
-			</form>		
+	
 		<!-- Start Neu eingefügt soll oben ersetzen wenn es fertig ist -->	
 		    	<table>
 		    	<form action="data_management.php" method="POST">        

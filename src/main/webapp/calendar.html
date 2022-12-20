@@ -21,16 +21,21 @@ document.addEventListener('DOMContentLoaded', function() {
 		selectable: true,
 		select: async function (start, end, allDay) {
 			const { value: formValues } = await Swal.fire({
-				title: 'Add Event',
-				html: '<input id="swalEvtTitle" class="swal2-input" placeholder="Enter title">' + 
-				'<textarea id = "swalEvtDesc" class="swal2-input" placeholder="Enter Description"></textarea>' +
-				'<input id = "swalEvtURL" class="swal2-input" placeholder="Enter URL">',
+				title: 'Arbeitszeit erfassen',
+				html: 'Beginn: <input id="swalEvtStart" class="swal2-input" placeholder="Beginn eintragen" type="time">' + 
+				'<br>'+
+				'Ende: <input id = "swalEvtEnd" class="swal2-input" placeholder="Ende eintragen" type="time">' +
+				'<br>'+
+				'Pause: <input id = "swalEvtPause" class="swal2-input" placeholder="Pause eintragen" type="time">' +
+				'<br>'+
+				'Notiz: <input id = "swalEvtNote" class="swal2-input" placeholder="Notiz eintragen">',
 				focusConfirm: false,
 				preConfirm: () => {
 					return [
-						document.getElementById('swalEvtTitle').value,
-						document.getElementById('swalEvtDesc').value,
-						document.getElementById('swalEvtURL').value,
+						document.getElementById('swalEvtStart').value,
+						document.getElementById('swalEvtEnd').value,
+						document.getElementById('swalEvtPause').value,
+						document.getElementById('swalEvtNote').value
 					]
 				}
 				
@@ -40,7 +45,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				fetch("eventHandler.php", {
 					method: "POST",
 					headers: {"Content-Type": "application/json" },
-					body: JSON.stringify({ request_type:'addEvent', start:start.startStr, end:start.endStr, eventData:formValues}),
+					body: JSON.stringify({ request_type:'addEvent', start:start.startStr, end:start.endStr, 
+					event_data: formValues}),
 				})
 				.then(response => response.json())
 				.then(data => {
@@ -62,10 +68,35 @@ document.addEventListener('DOMContentLoaded', function() {
 			info.el.style.borderColor = 'red';
 			
 			Swal.fire({
-				title: 'Beginn: '+info.event.extendedProps.start_time+'<br> Ende: '+info.event.extendedProps.end_time+'<br> Pause: '+info.event.extendedProps.pause_time+'<br> Notiz: '+info.event.extendedProps.note,
+				title: 'Arbeitszeiterfassung',
 				icon: 'info',
-				
-			})
+				html:'<p> Beginn: '+info.event.extendedProps.start_time+'<br> Ende: '+info.event.extendedProps.end_time+'<br> Pause: '+info.event.extendedProps.pause_time+'<br> Notiz: '+info.event.extendedProps.note,
+				showCloseButton: true,
+				showCancelButton: true,
+				cancelButtonText: 'Schließen',
+				confirmButtonText: 'Erfasste Zeit löschen',
+			}).then((result) => {
+				if (result.isConfirmed) {
+					fetch("eventHandler.php", {
+						method: "POST",
+						headers: {"Content-Type": "application/json" },
+						body: JSON.stringify({ request_type:'deleteEvent', event_id: info.event.id}),
+					})
+					.then(response => response.json())
+					.then(data => {
+						if (data.status == 1) {
+							Swal.fire('Arbeitszeit erfolgreich gelöscht!', '', 'success');
+						} else {
+							Swal.fire(data.error, '', 'error');
+						}
+						
+						calendar.refetchEvents();
+					})
+					.catch(console.error);
+				} else {
+					swal.close();
+				}
+			});
 			
 		}
 	});

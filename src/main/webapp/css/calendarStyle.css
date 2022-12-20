@@ -1,6 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+}
+
 html, body {
-	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+	font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	font-weight: 100;
+	color: rgba(001, 001, 001, 1);
 	font-size: 14px;
+	margin: 10px 10px;
 }
 
 .container {

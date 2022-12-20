@@ -13,6 +13,10 @@
     <link rel = "stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <script src="js/calendar.js" defer></script>
  	<script src="js/menu.js" defer></script>
+ 	<!-- für den timer -->
+ 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 	
  </head>
  
 <body style="background-color: #fff">
@@ -29,7 +33,7 @@
   		<div class="col-5 col-s-6 menu">
     		
 		    <div> <button class=quicktrackingbtn style="width:auto;">Schnellerfassung</button> </div>
-    <button onclick="displayDate()">Schnellerfassung</button>
+   <button onclick="displayDate()">Schnellerfassung</button>
 <p id="Startzeitpunkt"></p>
 
 <!-- Start/Stop Zeiterfassung -->
@@ -38,7 +42,22 @@
 <p></p>
 Start<p id="Start"></p>
 Stop<p id="Stop"></p>
-			
+<!-- Start/Stop Zeiterfassung   12 -->
+  <center>
+    <div id="timer">
+      <span id="hours">00:</span>
+      <span id="mins">00:</span>
+      <span id="seconds">00</span>  
+    </div>
+    <div id="controls">
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button id="reset">Reset</button>
+    </div>
+  </center>
+
+
+
 		    
 		    <!-- Form for inserting a tracked time into the database -->		    
 		    <form action="data_management.php" method="POST">
@@ -212,6 +231,8 @@ function displayDate() {
 
 
 
+
+
 <!-- Zeiteingabe muss noch in JS -->
 
 <script>
@@ -362,25 +383,6 @@ hourSelect_start.onchange = ()=>{
  maximaleStundenanzahl = hourSelect_end.value - hourSelect_start.value
 
 
-
-
-
- 
- 
- 
- 
- 
- 
- 
- 
-
-
- 
- 
- 
- 
- 
- 
 //Funktion, die den Submit abfängt/durchführt
 submitButtonTest.onclick= ()=>{
   console.log("Clicked")
@@ -412,7 +414,53 @@ sendToDB();
  //hourSelect.onchange = setMinutesToZero;
  //minuteSelect.onchange = setMinutesToZero;
           </script>
-<!-- Ende Scrippt -->	   
+<!-- Ende Scrippt -->
+
+<!-- Start Script Start/Stop Zeiterfassung   12 -->	
+<script>
+var hours =0;
+var mins =0;
+var seconds =0;
+
+$('#start').click(function(){
+      startTimer();
+});
+
+$('#stop').click(function(){
+      clearTimeout(timex);
+});
+
+$('#reset').click(function(){
+      hours =0;      mins =0;      seconds =0;
+  $('#hours','#mins').html('00:');
+  $('#seconds').html('00');
+});
+
+function startTimer(){
+  timex = setTimeout(function(){
+      seconds++;
+    if(seconds >59){seconds=0;mins++;
+       if(mins>59) {
+       mins=0;hours++;
+         if(hours <10) {$("#hours").text('0'+hours+':')} else $("#hours").text(hours+':');
+        }
+                       
+    if(mins<10){                     
+      $("#mins").text('0'+mins+':');}       
+       else $("#mins").text(mins+':');
+                   }    
+    if(seconds <10) {
+      $("#seconds").text('0'+seconds);} else {
+      $("#seconds").text(seconds);
+      }
+     
+    
+      startTimer();
+  },1000);
+}
+</script>
+
+<!-- Ende Script Start/Stop Zeiterfassung   12 -->	   
 		    
 
   </body>

@@ -22,7 +22,7 @@ if (!empty($date) || !empty($start_time) || !empty($end_time)) {
         
         $SELECT = "SELECT note From tracked_time Where note = ? Limit 1";
         $SELECTp_nr = "SELECT p_nr From users Where id = ? Limit 1";
-        $INSERT = "INSERT INTO tracked_time (title, p_nr, date, start_time, pause_time, end_time, note) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $INSERT = "INSERT INTO tracked_time (title, p_nr, date, start_time, pause_time, end_time, note, working_hours) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         
         
         $stmt = $connect->prepare($SELECTp_nr);
@@ -35,9 +35,22 @@ if (!empty($date) || !empty($start_time) || !empty($end_time)) {
             $stmt->close();
             
             $title="Arbeitszeiterfassung ".$_POST['date']."  ";
+            $worked_start = $_POST['date']." ".$_POST['start_time'].":00 ";
+            $worked_end = $_POST['date']." ".$_POST['end_time'].":00 ";
+            $starttimestamp = strtotime($worked_start);
+            $endtimestamp = strtotime($worked_end);
+            
+            function differenceInHours($worked_start,$worked_end){
+                $starttimestamp = strtotime($worked_start);
+                $endtimestamp = strtotime($worked_end);
+                $difference = abs(($endtimestamp - $starttimestamp)/3600);
+                return $difference;
+            }
+            
+            $working_hours = differenceInHours($worked_start,$worked_end);
             
             $stmt=$connect->prepare($INSERT);
-            $stmt->bind_param("sisssss",$title, $p_nr, $date, $start_time, $pause_time, $end_time, $note);
+            $stmt->bind_param("sissssss",$title, $p_nr, $date, $start_time, $pause_time, $end_time, $starttimestamp, $working_hours);
             $stmt->execute();
             header('Location: http://zeiterfassung-wbh.de/Dashboard.html');
             exit;

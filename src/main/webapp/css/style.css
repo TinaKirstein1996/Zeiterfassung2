@@ -26,6 +26,10 @@ body {
 	line-height: 30px;
 }
 
+.timer {
+	text-align: center;
+}
+
 /* The side navigation menu */
 .sidenav {
   height: 100%; /* 100% Full-height */

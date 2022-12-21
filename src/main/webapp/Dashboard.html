@@ -32,6 +32,10 @@
     
 		<!-- Begibn Linke spalte -->	    
   		<div class="col-5 col-s-6 menu">
+  		
+  		<div>
+  			<button class=quicktrackingbtn style="width:auto;">Schnellerfassung</button>
+  		</div>
 
 			<!-- Start/Stop Zeiterfassung   12 -->
     		<div class = "timer" id="timer">
@@ -49,21 +53,15 @@
 			
 		<!-- Tabelle Zeiteingabe -->	
 		    <table>
-		    	<form action="data_management.php" method="POST">        
+		    	<form action="data_management.php" method="POST"> 
+		    	<div hidden="hidden">
+		    		<output id="current_date2" name="current_date"></output>
+		    	</div>       
            
               	<p class="fallbackLabel">
               	</p>
               	<div class="fallbackTimePicker">
                 	<div>
-        				<!-- Datum -->		      		
-		      			<tr>
-			        		<td width="150">
-			        			<label for="date">Datum: </label>
-			        		</td>
-		        			<td>
-		        				<input type="date" size="60" name="date" required>
-		        			</td>
-		      			</tr>
         				<!-- Start -->
 		      			<tr>
 		        			<td width="150">

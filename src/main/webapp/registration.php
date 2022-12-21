@@ -72,7 +72,7 @@ if(isset($_GET['register'])) {
         $result = $stmt->execute(array('p_nr' => $p_nr, 'email' => $email, 'password' => $password_hash, 'weekly_workinghours' => $weekly_workinghours, 'start_time' => $start_time, 'end_time' => $end_time, 'pause_time' => $pause_time));
         
         if($result) {
-            echo 'Registrierung erfolgreich abgeschlossen! <a href="login.php">Zum Login</a>';
+            echo 'Registrierung erfolgreich abgeschlossen! <a href="index.html">Zum Login</a>';
             $showFormular = false;
         } else {
             echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
@@ -124,7 +124,7 @@ if($showFormular) {
 			
 		</div>
 
-    	<p>Sie haben bereits einen Account? <a href="login.php">Einloggen</a>.</p>
+    	<p>Sie haben bereits einen Account? <a href="index.html">Einloggen</a>.</p>
 	</form>
 <?php
 } //Ende von if($showFormular)

@@ -2,8 +2,6 @@
 session_start();
 
 $userid = $_SESSION['userid'];
-$date = $_POST['date'];
-
 $start_time_hour = $_POST['hour_start'];
 $start_time_minute = $_POST['minute_start'];
 $pause_time_start = $_POST['hour_pause'];
@@ -13,7 +11,7 @@ $end_time_hour = $_POST['minute_end'];
 
 $note = $_POST['note'];
 
-if (!empty($date) || !empty($start_time_hour) || !empty($end_time_hour)) {
+if (!empty($start_time_hour) || !empty($end_time_hour)) {
     $dbhost="rdbms.strato.de";
     $dbuser="dbu433728";
     $dbpass="projektarbeit";
@@ -24,6 +22,9 @@ if (!empty($date) || !empty($start_time_hour) || !empty($end_time_hour)) {
     if (mysqli_connect_error()){
         die('Connect Error('. mysqli_connect_errno().')'. mysqli_connect_error());
     } else {
+        
+        date_default_timezone_set('Europe/Berlin');
+        $current_date = date('Y-m-d');
         
         $SELECT = "SELECT note From tracked_time Where note = ? Limit 1";
         $SELECTp_nr = "SELECT p_nr From users Where id = ? Limit 1";
@@ -39,14 +40,14 @@ if (!empty($date) || !empty($start_time_hour) || !empty($end_time_hour)) {
         if ($p_nr!==0) {
             $stmt->close();
             
-            $title="Arbeitszeiterfassung ".$_POST['date']."  ";
+            $title="Arbeitszeiterfassung ".$current_date."  ";
             $start_time = $_POST['hour_start'].":".$_POST['minute_start'];
             $pause_time = $_POST['hour_pause'].":".$_POST['max_pause'];
             $end_time = $_POST['hour_end'].":".$_POST['minute_end'];
             
-            $worked_start = $_POST['date']." ".$start_time;
-            $worked_pause = $_POST['date']." ".$pause_time;
-            $worked_end = $_POST['date']." ".$end_time;
+            $worked_start = $current_date." ".$start_time;
+            $worked_pause = $current_date." ".$pause_time;
+            $worked_end = $current_date." ".$end_time;
             $starttimestamp = strtotime($worked_start);
             $endtimestamp = strtotime($worked_end);
             
@@ -87,10 +88,10 @@ if (!empty($date) || !empty($start_time_hour) || !empty($end_time_hour)) {
                 return $difference;
             }
             
-            $working_hours = differenceInHours($worked_start,$worked_end, $worked_pause, $_POST['date']);
+            $working_hours = differenceInHours($worked_start,$worked_end, $worked_pause, $current_date);
             
             $stmt=$connect->prepare($INSERT);
-            $stmt->bind_param("sissssss",$title, $p_nr, $date, $start_time, $pause_time, $end_time, $note, $working_hours);
+            $stmt->bind_param("sissssss",$title, $p_nr, $current_date, $start_time, $pause_time, $end_time, $current_date, $working_hours);
             $stmt->execute();
             header('Location: http://zeiterfassung-wbh.de/Dashboard.html');
             exit;

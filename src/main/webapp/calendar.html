@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			Swal.fire({
 				title: 'Arbeitszeiterfassung',
 				icon: 'info',
-				html:'<p> Beginn: '+info.event.extendedProps.start_time+'<br> Ende: '+info.event.extendedProps.end_time+'<br> Pause: '+info.event.extendedProps.pause_time+'<br> Notiz: '+info.event.extendedProps.note,
+				html:'<p> Beginn: '+info.event.extendedProps.start_time+'<br> Ende: '+info.event.extendedProps.end_time+'<br> Pause: '+info.event.extendedProps.pause_time+'<br> Notiz: '+info.event.extendedProps.note+'<br> Geleistete Stunden: '+info.event.extendedProps.working_hours,
 				showCloseButton: true,
 				showCancelButton: true,
 				cancelButtonText: 'Schließen',

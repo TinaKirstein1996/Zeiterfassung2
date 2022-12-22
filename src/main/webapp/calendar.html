@@ -9,7 +9,8 @@
 
 <script src="js/sweetalert2.all.min.js" defer></script>
 <script src="js/fullcalendar/lib/main.js" defer></script>
-
+<script src="js/timeselect.js" defer></script>
+	
 <script> 
 document.addEventListener('DOMContentLoaded', function() {
 	var calendarEl = document.getElementById('calendar');
@@ -28,7 +29,31 @@ document.addEventListener('DOMContentLoaded', function() {
 				'<br>'+
 				'Pause: <input id = "swalEvtPause" class="swal2-input" placeholder="Pause eintragen" type="time">' +
 				'<br>'+
-				'Notiz: <input id = "swalEvtNote" class="swal2-input" placeholder="Notiz eintragen">',
+				'Notiz: <input id = "swalEvtNote" class="swal2-input" placeholder="Notiz eintragen">'
+				'<br>'+
+				//<!-- Tabelle Zeiteingabe -->
+				
+				'<form action="data_management.php" method="POST"><div hidden="hidden">'+
+				'<br>'+
+				'<output id="current_date2" name="current_date"></output></div><p class="fallbackLabel"></p><div class="fallbackTimePicker"><div>'+
+				'<br>'+
+				//<!-- Start -->
+				'Beginn:<label for="hour_start"></label><select id="hour_start" name="hour_start"></select><label for="minute_start">:</label><select id="minute_start" name="minute_start"></select>'+
+				'<br>'+
+				//<!-- Ende -->
+				'Ende:<label for="hour_end"></label><select id="hour_end" name="hour_end"></select><label for="minute_end">:</label><select id="minute_end" name="minute_end"></select>'+
+				'<br>'+
+				//<!-- Pause -->
+				'Pause:<label for="hour_pause"></label><select id="hour_pause" name="hour_pause"></select><label for="minute_pause">:</label><select id="minute_pause" name="max_pause"></select>'+
+				'<br>'+
+				//<!-- Notizen -->
+				'Notiz: <input id = "swalEvtNote" class="swal2-input" placeholder="Notiz eintragen">'+
+				'<br>'+
+				 //<!-- Senden -->
+				'<button  id="submitButtonTest" style="width:auto;" >Eingabe speichern</button></div></div>'+
+				'<br>'+
+				'</form>',
+				
 				focusConfirm: false,
 				preConfirm: () => {
 					return [
@@ -106,6 +131,44 @@ document.addEventListener('DOMContentLoaded', function() {
 </head>
 
 <body>
+
+<!-- Test Zeit -->
+		<!-- Tabelle Zeiteingabe -->	
+		
+		    	<form action="data_management.php" method="POST"> 
+		    	<div hidden="hidden">
+		    		<output id="current_date2" name="current_date"></output>
+		    	</div>       
+           
+              	<p class="fallbackLabel">
+              	</p>
+              	<div class="fallbackTimePicker">
+                	<div>
+        				<!-- Start -->
+                    			<label for="hour_start">Beginn:</label>
+                    			<select id="hour_start" name="hour_start"></select> 
+                    			<label for="minute_start">:</label>
+                    			<select id="minute_start" name="minute_start"></select>
+         				<!-- Pause -->
+                    			<label for="hour_pause">Pause:</label>
+                    			<select id="hour_pause" name="hour_pause"></select>
+                    			<label for="minute_pause">:</label>
+                    			<select id="minute_pause" name="max_pause"></select>                    
+        				<!-- Ende -->
+		        		    	<label for="hour_end">Ende:</label> 
+                    			<select id="hour_end" name="hour_end"></select>
+                    			<label for="minute_end">:</label>
+                    			<select id="minute_end" name="minute_end"></select>
+        				<!-- Notizen -->
+		        			<input type="text" size="14" name="note">
+       				 <!-- Senden -->
+		        			<button  id="submitButtonTest" style="width:auto;" >Eingabe speichern</button>
+
+		      		</div>
+		      	</div>
+		      	</form>
+<!-- Test Zeit -->
+
 <div class = "container">
 	<div class= "wrapper">
 		<div id= "calendar"></div>

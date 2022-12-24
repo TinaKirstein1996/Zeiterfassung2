@@ -23,9 +23,8 @@
  
 	<div class="header"> 
 	 	<header>
-	 		<h2>Arbeitszeiterfassung Hauptmenü</h2>
-	    	<div id="current_date"></div>
-	    	  			<p><a href="http://zeiterfassung-wbh.de/calendar.html" target="_blank">Kalender</a></p>
+	 		<h2>Arbeitszeiterfassung</h2>
+
 	    </header>
 	</div>
 	 
@@ -36,12 +35,10 @@
   		<div class="col-5 col-s-6 menu">
   		
   		<div>
-	  		<form action="quicktracking.php" method="POST">
-	  			<button class=quicktrackingbtn style="width:auto;">Schnellerfassung</button>
-	  		</form>
+  			    	<h3><div  id="current_date"></div></h3>
+
   		</div>
 
-		
 
 			
 		<!-- Tabelle Zeiteingabe -->	
@@ -89,26 +86,16 @@
                     			<select id="minute_end" name="minute_end"></select>
 		        			</td>
 		      			</tr>
-        				<!-- Notizen -->
-		      			<tr>
-		        			<td width="150">Notiz: 
-		        			</td> 
-		        			<td>
-		        			<input type="text" size="14" name="note">
-		        			</td>
-		      			</tr>
-       				 <!-- Senden -->
-		      			<tr>
-		        			<td>
-		        			<button  id="submitButtonTest" style="width:auto;" >Eingabe speichern</button>
-		        			</td>
-		      			</tr>
+
 		      		</div>
 		      	</div>
 		      	</form>
 			</table> 			
-		
-			
+		<div><input id = "swalEvtNote" class="swal2-input" placeholder="Notiz eintragen"></div>
+		<div><button  id="submitButtonTest" style="width:auto;" >Eingabe speichern</button></div>
+	  	<form action="quicktracking.php" method="POST">
+	  			<button class=quicktrackingbtn style="width:auto;">Schnellerfassung</button>
+	  	</form>
   		</div>
 		<!-- Ende Linke spalte -->
 	    
@@ -148,14 +135,40 @@
 		
 		<!-- Begibn Rechte spalte -->
 		<div class="col-3 col-s-12">
-    		<div class="aside">
-  				<h2> Stammdaten</h2>
+    		
+  				<h2> Hinweise</h2>
+  				<p>Ruhepausen:</p>
+  				<p>>6h - 30 Minuten</p>
+  				<p>>9h - 45 Minuten</p>  				
+  				<p>Arbeitszeiten</p>
+  				<p>- max 8 Stunden pro Tag, in</p>
+  				<p>Ausnahmen 10 Stunden </p>
+  				<p>- max 48 Stunden pro Woche</p>
+  				<p>in Ausnahmen 60Stunden</p>  				
   				
-   		 </div>
+  				<style>
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+</style>
+<p><b><a href="https://www.gesetze-im-internet.de/arbzg/BJNR117100994.html" target="_blank">mehr zum Arbeitszeitgesetz</a></b></p>
+  				   		 
    		 <div class="aside">
   			<p> Link zu den Zeitarbeitsgesetzen</p>
   			<p><a href="https://www.gesetze-im-internet.de/arbzg/BJNR117100994.html" target="_blank">Arbeitszeitgesetz</a></p>
-
+			<p><a href="https://www.gesetze-im-internet.de/arbzg/BJNR117100994.html" target="_blank">Stammdaten</a></p>
    		 </div>
   		</div>
 	</div>

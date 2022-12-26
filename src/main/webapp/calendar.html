@@ -2,10 +2,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Zeiterfassungs Kalender</title>
 
 <link rel="stylesheet" href = "css/calendarStyle.css">
 <link rel="stylesheet" href = "js/fullcalendar/lib/main.css">
+<link rel="stylesheet" href = "css/style.css">
 
 <script src="js/sweetalert2.all.min.js" defer></script>
 <script src="js/fullcalendar/lib/main.js" defer></script>
@@ -108,7 +110,12 @@ document.addEventListener('DOMContentLoaded', function() {
 </head>
 
 <body>
-
+<div class="header"> 
+	 	<header>
+	 		<h2>Arbeitszeiterfassung Kalender </h2>
+			<p><a href="https://zeiterfassung-wbh.de/Dashboard.html" target="_blank">Hauptmenü</a></p>
+	    </header>
+	</div>
 <div class = "container">
 	<div class= "wrapper">
 		<div id= "calendar"></div>

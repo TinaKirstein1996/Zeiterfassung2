@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!-- Git Test  -->
 <html lang="ger" dir="ltr">
-
 <head>
 	<meta charset = "utf-8">
     <title>Zeiterfassungs-Anwendung</title>
@@ -19,32 +18,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  </head>
  
-<<<<<<< HEAD
-<body>
-=======
 <body style="background-color: rgb(FFF)">
->>>>>>> c171e414a27a7b3613855d0333d3780d301bdda2
- 
+
 	<div class="header"> 
 	 	<header>
 	 		<h2>Arbeitszeiterfassung</h2>
-
 	    </header>
 	</div>
-	 
+
     
     <div class="row">
     
 		<!-- Begibn Linke spalte -->	    
-  		<div class="col-5 col-s-6 menu">
-  		
-  		<div>
-  			    	<h3><div  id="current_date"></div></h3>
+  		<div class="col-5 col-s-6 menu" style="width: fit-content;">
 
-  		</div>
+  		<div id="current_date" style="font-weight: bold;"></div>
 
-
-			
 		<!-- Tabelle Zeiteingabe -->	
 		    <table>
 		    	<form action="data_management.php" method="POST"> 
@@ -60,7 +49,6 @@
 		      			<tr>
 		        			<td width="150">
                     			<label for="hour_start">Beginn:</label>
-
 		        			</td> 
 		        			<td>	
                     			<select id="hour_start" name="hour_start"></select> 
@@ -90,22 +78,37 @@
                     			<select id="minute_end" name="minute_end"></select>
 		        			</td>
 		      			</tr>
-
+        				<!-- Notizen -->
+		      			<tr>
+		        			<td width="150">Notiz: 
+		        			</td> 
+		        			<td>
+		        			<input type="text" size="14" name="note">
+		        			</td>
+		      			</tr>
+       				 <!-- Senden -->
+		      			<tr>
+		        			<td colspan="2" style="padding-top: 15px;">
+		        			<button  id="submitButtonTest" style="width:auto; border-radius: 8px;" >Eingabe speichern</button>
+		        			</td>
+		      			</tr>
 		      		</div>
 		      	</div>
 		      	</form>
-			</table> 			
-		<div><input id = "swalEvtNote" class="swal2-input" placeholder="Notiz eintragen"></div>
-		<div><button  id="submitButtonTest" style="width:auto;" >Eingabe speichern</button></div>
-	  	<form action="quicktracking.php" method="POST">
-	  			<button class=quicktrackingbtn style="width:auto;">Schnellerfassung</button>
-	  	</form>
+			</table> 		
+		
+		<div>
+			<form action="quicktracking.php" method="POST">
+				<button class=quicktrackingbtn style="width:auto;">Schnellerfassung</button>
+			</form>
+  		</div>
+  		
+  		
   		</div>
 		<!-- Ende Linke spalte -->
-	    
+
 		<!-- Begibn Mittlere spalte -->    		
   		<div class="col-4 col-s-6">
-
 		    <!-- Calender for time tracking -->
 			<!-- ohne funktion wegen ppp-->
 			<div class="calendar_wrappper">
@@ -130,73 +133,60 @@
 		    	</div>
 			</div>
 			<div style="text-align: center;"id="calendarLink">
-				<a target="_blank" href="http://zeiterfassung-wbh.de/calendar.html" target="_blank">Link zu den Kalendereintragungen</a>
+				<a target="_blank" href="http://zeiterfassung-wbh.de/calendar.html" style="border-radius: 8px;">Link zu den Kalendereintragungen</a>
 			</div>
 		</div>
 		
 		<div id="main"> </div>
 		<!-- Ende Mittlere spalte -->
-		
+
 		<!-- Begibn Rechte spalte -->
 		<div class="col-3 col-s-12">
-<<<<<<< HEAD
-    		<div class="aside">
-  				<h2> Stammdaten</h2>
-  				<div style="text-align: center;"id="user_dataLink">
-					<a target="_blank" href="http://zeiterfassung-wbh.de/user_data.php" target="_blank">Persönliche Stammdaten</a>
-				</div>
-  				
-   		 	</div>
+	    	<div class="aside">
+	    		<h2> Stammdaten</h2>
+	  			<h2> Hinweise</h2>
+	  			<p>Ruhepausen:</p>
+	  			<p>>6h - 30 Minuten</p>
+	  			<p>>9h - 45 Minuten</p>
+	  			<p>Arbeitszeiten</p>
+	  			<p>- max 8 Stunden pro Tag, in</p>
+	  			<p>Ausnahmen 10 Stunden </p>
+	  			<p>- max 48 Stunden pro Woche</p>
+	  			<p>in Ausnahmen 60Stunden</p>
+	  		</div>
+	  		
+	  		<style>
+				a:link {
+				  text-decoration: none;
+				}
+				
+				a:visited {
+				  text-decoration: none;
+				}
+				
+				a:hover {
+				  text-decoration: underline;
+				}
+				
+				a:active {
+				  text-decoration: underline;
+				}
+			</style>
+
+			<p><b><a href="https://www.gesetze-im-internet.de/arbzg/BJNR117100994.html" target="_blank">mehr zum Arbeitszeitgesetz</a></b></p>
+
    		 	<div class="aside">
   				<p> Link zu den Zeitarbeitsgesetzen</p>
   				<p><a href="https://www.gesetze-im-internet.de/arbzg/BJNR117100994.html" target="_blank">Arbeitszeitgesetz</a></p>
 
+				<p><a href="https://www.gesetze-im-internet.de/arbzg/BJNR117100994.html" target="_blank">Stammdaten</a></p>
    		 	</div>
-=======
-    		
-  				<h2> Hinweise</h2>
-  				<p>Ruhepausen:</p>
-  				<p>>6h - 30 Minuten</p>
-  				<p>>9h - 45 Minuten</p>  				
-  				<p>Arbeitszeiten</p>
-  				<p>- max 8 Stunden pro Tag, in</p>
-  				<p>Ausnahmen 10 Stunden </p>
-  				<p>- max 48 Stunden pro Woche</p>
-  				<p>in Ausnahmen 60Stunden</p>  				
-  				
-  				<style>
-a:link {
-  text-decoration: none;
-}
-
-a:visited {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-a:active {
-  text-decoration: underline;
-}
-</style>
-<p><b><a href="https://www.gesetze-im-internet.de/arbzg/BJNR117100994.html" target="_blank">mehr zum Arbeitszeitgesetz</a></b></p>
-  				   		 
-   		 <div class="aside">
-  			<p> Link zu den Zeitarbeitsgesetzen</p>
-  			<p><a href="https://www.gesetze-im-internet.de/arbzg/BJNR117100994.html" target="_blank">Arbeitszeitgesetz</a></p>
-			<p><a href="https://www.gesetze-im-internet.de/arbzg/BJNR117100994.html" target="_blank">Stammdaten</a></p>
-   		 </div>
->>>>>>> c171e414a27a7b3613855d0333d3780d301bdda2
   		</div>
 	</div>
 <!-- Ende Rechte spalte -->
-
 <!-- Begibn Fuß spalte -->	
 	<div class="footer">
 	</div>
 <!-- Ende Fuß spalte -->	
-
 </body>
 </html>

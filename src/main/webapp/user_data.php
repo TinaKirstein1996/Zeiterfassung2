@@ -74,7 +74,6 @@ if(mysqli_num_rows($result) > 0){
     <br>
     <br>
     <div style="text-align: left;"id="DashboardLink">
-		<a target="_blank" href="http://zeiterfassung-wbh.de/Dashboard.html" style="border-radius: 8px; width:20%;">Zurück zum Dashboard</a>
-	</div>
+</div>
 </body>
 </html>

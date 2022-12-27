@@ -15,6 +15,7 @@ $pdo = new PDO('mysql:host=rdbms.strato.de;dbname=dbs9413900', 'dbu433728', 'pro
 <head>
 <meta charset = "utf-8">
 <title>Zeiterfassungs-Anwendung</title>
+<link rel="icon" type="image/png" href="/image/wbh.png">
 <link rel="stylesheet" href = "css/registrationStyle.css">
 <link rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

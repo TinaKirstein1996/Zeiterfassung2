@@ -91,7 +91,7 @@ if (!empty($start_time_hour) || !empty($end_time_hour)) {
             $working_hours = differenceInHours($worked_start,$worked_end, $worked_pause, $current_date);
             
             $stmt=$connect->prepare($INSERT);
-            $stmt->bind_param("sissssss",$title, $p_nr, $current_date, $start_time, $pause_time, $end_time, $current_date, $working_hours);
+            $stmt->bind_param("sissssss",$title, $p_nr, $current_date, $start_time, $pause_time, $end_time, $note, $working_hours);
             $stmt->execute();
             header('Location: http://zeiterfassung-wbh.de/Dashboard.html');
             exit;

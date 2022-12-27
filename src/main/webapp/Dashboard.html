@@ -4,6 +4,9 @@
 <head>
 	<meta charset = "utf-8">
     <title>Zeiterfassungs-Anwendung</title>
+    
+    <link rel="icon" type="image/png" href="/image/wbh.png">
+    
     <link rel="stylesheet" href = "css/dashboardaufbau.css">   
     <link rel="stylesheet" href = "css/style.css">
     <link rel="stylesheet" href = "css/calendar.css">  
@@ -16,7 +19,7 @@
     <script src="js/timeselect.js" defer></script>	
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- </head>
+</head>
  
 <body style="background-color: rgb(FFF)">
 
@@ -32,7 +35,8 @@
 		<!-- Begibn Linke spalte -->	    
   		<div class="col-5 col-s-6 menu" style="width: fit-content;">
 
-  		<div id="current_date" style="font-weight: bold;"></div>
+  		<div id="current_date" style="font-weight: 500;font-size: 1.45rem;"></div>
+  		<br>
 
 		<!-- Tabelle Zeiteingabe -->	
 		    <table>
@@ -51,9 +55,9 @@
                     			<label for="hour_start">Beginn:</label>
 		        			</td> 
 		        			<td>	
-                    			<select id="hour_start" name="hour_start"></select> 
+                    			<select id="hour_start" name="hour_start" style="width: 40px;"></select> 
                     			<label for="minute_start">:</label>
-                    			<select id="minute_start" name="minute_start"></select>
+                    			<select id="minute_start" name="minute_start" style="width: 40px;"></select>
 		        			</td>
 		        		</tr>	
          				<!-- Pause -->
@@ -62,9 +66,9 @@
                     			<label for="hour_pause">Pause:</label>
 		        			</td> 
 		        			<td>
-                    			<select id="hour_pause" name="hour_pause"></select>
+                    			<select id="hour_pause" name="hour_pause" style="width: 40px;"></select>
                     			<label for="minute_pause">:</label>
-                    			<select id="minute_pause" name="max_pause"></select>                    
+                    			<select id="minute_pause" name="max_pause" style="width: 40px;"></select>                    
 		        			</td>
 		      			</tr>
         				<!-- Ende -->
@@ -73,23 +77,22 @@
 		        		    	<label for="hour_end">Ende:</label> 
 		        			</td> 
 		        			<td>
-                    			<select id="hour_end" name="hour_end"></select>
+                    			<select id="hour_end" name="hour_end" style="width: 40px;"></select>
                     			<label for="minute_end">:</label>
-                    			<select id="minute_end" name="minute_end"></select>
+                    			<select id="minute_end" name="minute_end" style="width: 40px;"></select>
 		        			</td>
 		      			</tr>
         				<!-- Notizen -->
 		      			<tr>
-		        			<td width="150">Notiz: 
-		        			</td> 
+		        			<td width="150">Notizen: </td> 
 		        			<td>
-		        			<input type="text" size="14" name="note">
+		        			<textarea type="text" size="14" name="note"> </textarea>
 		        			</td>
 		      			</tr>
        				 <!-- Senden -->
 		      			<tr>
 		        			<td colspan="2" style="padding-top: 15px;">
-		        			<button  id="submitButtonTest" style="width:auto; border-radius: 8px;" >Eingabe speichern</button>
+		        			<button  id="submitButtonTest" style="width:auto;" >Zeiten eintragen</button>
 		        			</td>
 		      			</tr>
 		      		</div>
@@ -132,9 +135,9 @@
 		      		<ul class="days"></ul>
 		    	</div>
 			</div>
-			<div style="text-align: center;"id="calendarLink">
-				<a target="_blank" href="http://zeiterfassung-wbh.de/calendar.html" style="border-radius: 8px;">Link zu den Kalendereintragungen</a>
-			</div>
+			<form action="/calendar.html" target="_blank">
+         		<button type="submit">Historie anzeigen</button>
+      		</form>
 		</div>
 		
 		<div id="main"> </div>
@@ -142,45 +145,25 @@
 
 		<!-- Begibn Rechte spalte -->
 		<div class="col-3 col-s-12">
-	    	<div class="aside">
-	    		<h2> Stammdaten</h2>
-	  			<h2> Hinweise</h2>
-	  			<p>Ruhepausen:</p>
-	  			<p>>6h - 30 Minuten</p>
-	  			<p>>9h - 45 Minuten</p>
-	  			<p>Arbeitszeiten</p>
-	  			<p>- max 8 Stunden pro Tag, in</p>
-	  			<p>Ausnahmen 10 Stunden </p>
-	  			<p>- max 48 Stunden pro Woche</p>
-	  			<p>in Ausnahmen 60Stunden</p>
+			<div style="font-weight: 500;font-size: 1.45rem;">Hinweise</div>
+	    	<div class="aside" style="text-align: left;">
+	  			<p><u>Ruhepausen:</u></p>
+	  			<ul>
+	  				<li>6h - 30 Minuten</li>
+	  				<li>9h - 45 Minuten</li>
+	  			</ul>
+	  			<br>
+	  			<p><u>Arbeitszeit</u></p>
+	  			<ul>
+	  				<li>max 8 Stunden pro Tag, in Ausnahmen 10 Stunden </li>
+	  				<li>max 48 Stunden pro Woche, in Ausnahmen 60Stunden</li>
+	  			</ul>
 	  		</div>
-	  		
-	  		<style>
-				a:link {
-				  text-decoration: none;
-				}
-				
-				a:visited {
-				  text-decoration: none;
-				}
-				
-				a:hover {
-				  text-decoration: underline;
-				}
-				
-				a:active {
-				  text-decoration: underline;
-				}
-			</style>
-
-			<p><b><a href="https://www.gesetze-im-internet.de/arbzg/BJNR117100994.html" target="_blank">mehr zum Arbeitszeitgesetz</a></b></p>
-
-   		 	<div class="aside">
-  				<p> Link zu den Zeitarbeitsgesetzen</p>
-  				<p><a href="https://www.gesetze-im-internet.de/arbzg/BJNR117100994.html" target="_blank">Arbeitszeitgesetz</a></p>
-
-				<p><a href="https://www.gesetze-im-internet.de/arbzg/BJNR117100994.html" target="_blank">Stammdaten</a></p>
-   		 	</div>
+			<p><a href="https://www.gesetze-im-internet.de/arbzg/BJNR117100994.html" target="_blank">mehr zum Arbeitszeitgesetz</a></p>
+			<br>
+      		<form action="/user_data.php" target="_blank">
+      			<button type="submit">Stammdaten</button>
+      		</form>
   		</div>
 	</div>
 <!-- Ende Rechte spalte -->

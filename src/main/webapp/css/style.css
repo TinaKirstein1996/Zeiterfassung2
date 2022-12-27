@@ -70,13 +70,16 @@ body {
 
 /* Set a style for all buttons */
 button {
-  background-color: rgb(60, 157, 255);  
-  color: black;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 65%;
+	background-color: white;
+	color: #161496;
+	border: 1px solid #161496 !important;
+	font-size:15px;
+	font-weight: 500;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 100% !important;
 }
 
 button:hover {
@@ -104,8 +107,6 @@ button:hover {
 }
 
 .quicktrackingbtn {
-  background-color: #208ef5;
-  border-radius: 8px;
 }
 
 #image {
@@ -124,14 +125,7 @@ span.psw {
   padding: 15px;
 }
 /* Link zum Kalender im Dashboard */
-a:link, a:visited{
-  background-color:rgba(60, 157, 255, 1);
-  color: black;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
+
 
 a:hover, a:active {
   background-color:rgba(60, 157, 255, 0.7);

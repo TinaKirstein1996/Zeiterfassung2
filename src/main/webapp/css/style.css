@@ -134,7 +134,15 @@ span.psw {
 
 
 a:hover, a:active {
-  background-color:rgba(60, 157, 255, 0.7);
+
   color: black;
   
+}
+a:link, a:visited {
+
+  color: blue;
+  padding: 1px 1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
 }

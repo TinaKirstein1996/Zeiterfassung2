@@ -30,6 +30,7 @@ $showFormular = true;
 if(isset($_GET['register'])) {
     
     $error = false;
+    $testnumber = $_POST['testnumber'];
     $p_nr = $_POST['p_nr'];
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -38,13 +39,46 @@ if(isset($_GET['register'])) {
     $start_time = $_POST['start_time'];
     $end_time = $_POST['end_time'];
     $pause_time = $_POST['pause_time'];
+    
+    $password_length = 8;
+    
+    function password_strength($password) {
+        $returnVal = True;
         
+        if ( strlen($password) < $password_length ) {
+            $returnVal = False;
+        }
+        
+        if ( !preg_match("#[0-9]+#", $password) ) {
+            $returnVal = False;
+        }
+        
+        if ( !preg_match("#[a-z]+#", $password) ) {
+            $returnVal = False;
+        }
+        
+        if ( !preg_match("#[A-Z]+#", $password) ) {
+            $returnVal = False;
+        }
+        
+        if ( !preg_match("/[\'^£$%&*()}{@#~?><>,|=_+!-]/", $password) ) {
+            $returnVal = False;
+        }
+        
+        return $returnVal;
+        
+    }
+    
+    if ($testnumber != "482097") {
+        echo 'Bitte überprüfen Sie den eingegebenen Zugangscode.<br>';
+        $error = true;
+    }
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
         $error = true;
     }     
-    if(strlen($password) == 0) {
-        echo 'Bitte ein Passwort angeben<br>';
+    if(password_strength($password) != True ) {
+        echo 'Das Passwort muss mintestens 8 Zeichen, einen Groß- und Kleinbuchstaben, eine Zahl und ein Sonderzeichen enthalten.<br>';
         $error = true;
     }
     if($password != $password2) {
@@ -89,6 +123,11 @@ if($showFormular) {
     	<hr>
     	
     	<div class = container>
+    	
+    		Zugangscode für die Registrierung:<br>
+    		<i><small>(Sie erhalten diesen bei Ihrer Einladung zur Teilnahme an der Arbeiterfassungs-Anwendung.)</small></i><br>
+    		<input type="number" size="40" maxlength="250" name="testnumber" placeholder="Bitte Zugangscode eingeben" required><br><br>
+    		
 	    	Personalnummer:<br>
 			<input type=number size="40" maxlength="250" name="p_nr" placeholder="Bitte Personalnummer eingeben" required><br><br>
 	    		
@@ -96,6 +135,7 @@ if($showFormular) {
 			<input type="email" size="40" maxlength="250" name="email" placeholder="Bitte E-Mail Adresse eingeben" required><br><br>
 		 
 			Passwort:<br>
+			<i><small>(Das Passwort muss mintestens 8 Zeichen, einen Groß- und Kleinbuchstaben, eine Zahl und ein Sonderzeichen enthalten.)</small></i><br>
 			<input type="password" size="40"  maxlength="250" name="password" placeholder="Bitte Passwort eingeben" required><br>
 		 
 			Passwort wiederholen:<br>

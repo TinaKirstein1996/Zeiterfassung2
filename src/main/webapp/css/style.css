@@ -19,6 +19,16 @@ body {
 	padding: 0;
 }
 
+.heading {
+	text-align: left;
+}
+
+.logoutbtn {
+	width: 18% !important;
+	text-align: center;
+}
+
+
 .time_today{
 	order: 1;
 	flex-wrap: wrap;
@@ -103,9 +113,6 @@ button:hover {
   background-color: #208ef5;
   width: 40px;
   padding: 10px 60px 10px 30px;
-}
-
-.quicktrackingbtn {
 }
 
 #image {

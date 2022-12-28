@@ -28,6 +28,10 @@ if(mysqli_num_rows($result) > 0){
     
 </head>
 <body>
+	<div class="header d-flex flex-row justify-content-start">
+	 	<h2 class="heading">Arbeitszeiterfassung</h2>
+	 	</form>
+	</div>
     <h1>Stammdaten</h1>
     <?=$msg;?>
     <table style="width:100%; line-height:40px;">

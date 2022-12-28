@@ -188,6 +188,8 @@ if(mysqli_num_rows($result) > 0){
 <!-- Ende Rechte spalte -->
 <!-- Begibn Fuß spalte -->
 <div class="footer">
+    <p><a href="/Impressum.html" target="_blank">Impressum</a></p>
+    <p><a href="/Datenschutzerklärung.html" target="_blank">Datenschutzerklärung</a></p>		
 </div>
 <!-- Ende Fuß spalte -->
 </body>

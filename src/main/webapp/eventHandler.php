@@ -36,13 +36,59 @@ if (mysqli_connect_error()){
             $eventPause = !empty($event_data[2])?$event_data[2]:'';
             $eventNote = !empty($event_data[3])?$event_data[3]:'';
             
+            $worked_start = $start." ".$eventStart;
+            $worked_pause = $start." ".$eventPause;
+            $worked_end = $start." ".$eventEnd;
+            $starttimestamp = strtotime($worked_start);
+            $endtimestamp = strtotime($worked_end);
+            
             if(!empty($eventStart)) {
-                $sqlQ = "INSERT INTO tracked_time (title, p_nr, date, start_time, pause_time, end_time, note) VALUES (?,?,?,?,?,?,?)";
-                $title="Arbeitszeiterfassung $start";
+                $sqlQ = "INSERT INTO tracked_time (title, p_nr, date, start_time, pause_time, end_time, note, working_hours) VALUES (?,?,?,?,?,?,?,?)";
+                
+                
+                function differenceInHours($worked_start,$worked_end,$worked_pause, $date){
+                    $starttimestamp = strtotime($worked_start);
+                    $endtimestamp = strtotime($worked_end);
+                    $pausetimestamp = strtotime($worked_pause);
+                    $differenceHours = abs(($endtimestamp - $starttimestamp)/3600);
+                    $differenceMinutes = abs(($endtimestamp - $starttimestamp)/60);
+                    if ($differenceMinutes % 60 != 0){
+                        $differenceHours = floor($differenceHours);
+                        if ($differenceMinutes % 60 <= 9) {
+                            $differenceMinutes = "0".($differenceMinutes % 60);
+                        } else {
+                            $differenceMinutes = ($differenceMinutes % 60);
+                        }
+                    } else {
+                        $differenceMinutes = "00";
+                    }
+                    
+                    if ($pausetimestamp != 0){
+                        $differenceTime = $date." ".$differenceHours.":".$differenceMinutes.":00";
+                        $differencetimestemp = strtotime($differenceTime);
+                        $differenceHours = abs(($differencetimestemp - $pausetimestamp)/3600);
+                        $differenceMinutes = abs(($differencetimestemp - $pausetimestamp)/60);
+                        if ($differenceMinutes % 60 != 0){
+                            $differenceHours = floor($differenceHours);
+                            if ($differenceMinutes % 60 <= 9) {
+                                $differenceMinutes = "0".($differenceMinutes % 60);
+                            } else {
+                                $differenceMinutes = ($differenceMinutes % 60);
+                            }
+                        } else {
+                            $differenceMinutes = "00";
+                        }
+                    }
+                    $difference = $differenceHours.":".$differenceMinutes.":00";
+                    return $difference;
+                }
+                
+                $working_hours = differenceInHours($worked_start,$worked_end, $worked_pause, $start);
+                $title="Zeit: ".$working_hours." h ";
                 
                 
                 $stmt = $connect->prepare($sqlQ);
-                $stmt->bind_param("sisssss", $title, $p_nr, $start, $eventStart, $eventPause, $eventEnd, $eventNote);
+                $stmt->bind_param("sissssss", $title, $p_nr, $start, $eventStart, $eventPause, $eventEnd, $eventNote,$working_hours);
                 $insert = $stmt->execute();
                 
                 if($insert){

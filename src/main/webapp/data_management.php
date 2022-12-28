@@ -40,7 +40,7 @@ if (!empty($start_time_hour) || !empty($end_time_hour)) {
         if ($p_nr!==0) {
             $stmt->close();
             
-            $title="Arbeitszeiterfassung ".$current_date."  ";
+          
             $start_time = $_POST['hour_start'].":".$_POST['minute_start'];
             $pause_time = $_POST['hour_pause'].":".$_POST['max_pause'];
             $end_time = $_POST['hour_end'].":".$_POST['minute_end'];
@@ -89,14 +89,15 @@ if (!empty($start_time_hour) || !empty($end_time_hour)) {
             }
             
             $working_hours = differenceInHours($worked_start,$worked_end, $worked_pause, $current_date);
+            $title="Zeit: ".$working_hours." h ";
             
             $stmt=$connect->prepare($INSERT);
             $stmt->bind_param("sissssss",$title, $p_nr, $current_date, $start_time, $pause_time, $end_time, $note, $working_hours);
             $stmt->execute();
-            header('Location: http://zeiterfassung-wbh.de/Dashboard.html');
+            header('Location: http://zeiterfassung-wbh.de/Dashboard.php');
             exit;
         } else {
-            header('Location: http://zeiterfassung-wbh.de/Dashboard.html');
+            header('Location: http://zeiterfassung-wbh.de/Dashboard.php');
             exit;
         }
         $stmt->close();

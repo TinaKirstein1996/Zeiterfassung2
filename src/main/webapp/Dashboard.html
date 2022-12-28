@@ -60,17 +60,6 @@
                     			<select id="minute_start" name="minute_start" style="width: 40px;"></select>
 		        			</td>
 		        		</tr>	
-         				<!-- Pause -->
-		        		<tr>
-		        			<td width="150">
-                    			<label for="hour_pause">Pause:</label>
-		        			</td> 
-		        			<td>
-                    			<select id="hour_pause" name="hour_pause" style="width: 40px;"></select>
-                    			<label for="minute_pause">:</label>
-                    			<select id="minute_pause" name="max_pause" style="width: 40px;"></select>                    
-		        			</td>
-		      			</tr>
         				<!-- Ende -->
 		      			<tr>
 		        			<td width="150">
@@ -80,6 +69,17 @@
                     			<select id="hour_end" name="hour_end" style="width: 40px;"></select>
                     			<label for="minute_end">:</label>
                     			<select id="minute_end" name="minute_end" style="width: 40px;"></select>
+		        			</td>
+		      			</tr>
+         				<!-- Pause -->
+		        		<tr>
+		        			<td width="150">
+                    			<label for="hour_pause">Pause:</label>
+		        			</td> 
+		        			<td>
+                    			<select id="hour_pause" name="hour_pause" style="width: 40px;"></select>
+                    			<label for="minute_pause">:</label>
+                    			<select id="minute_pause" name="max_pause" style="width: 40px;"></select>                    
 		        			</td>
 		      			</tr>
         				<!-- Notizen -->
@@ -103,6 +103,7 @@
 		<div>
 			<form action="quicktracking.php" method="POST">
 				<button class=quicktrackingbtn style="width:auto;">Schnellerfassung</button>
+				
 			</form>
   		</div>
   		
@@ -135,7 +136,7 @@
 		      		<ul class="days"></ul>
 		    	</div>
 			</div>
-			<form action="/calendar.html" target="_blank">
+			<form action="/calendar.html" >
          		<button type="submit">Historie anzeigen</button>
       		</form>
 		</div>
@@ -161,7 +162,7 @@
 	  		</div>
 			<p><a href="https://www.gesetze-im-internet.de/arbzg/BJNR117100994.html" target="_blank">mehr zum Arbeitszeitgesetz</a></p>
 			<br>
-      		<form action="/user_data.php" target="_blank">
+      		<form action="/user_data.php">
       			<button type="submit">Stammdaten</button>
       		</form>
   		</div>

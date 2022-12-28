@@ -19,7 +19,7 @@ $user = $statement->fetch();
 //Überprüfung des Passworts
 if ($user !== false && password_verify($password, $user['password'])) {
     $_SESSION['userid'] = $user['id'];
-    die(header('Location: http://zeiterfassung-wbh.de/Dashboard.html'));
+    die(header('Location: http://zeiterfassung-wbh.de/Dashboard.php'));
 } else {
     $errorMessage = 'Fehler bei der Anmeldung, Personalnummer oder Passwort waren Falsch bitte <a href="index.html">hier</a> erneut einloggen.<br>';
 }

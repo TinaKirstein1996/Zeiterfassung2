@@ -105,10 +105,10 @@ if (mysqli_connect_error()){
         $stmt=$connect->prepare($INSERT);
         $stmt->bind_param("sissssss",$title, $p_nr, $current_date, $start_time, $pause_time, $end_time, $note, $working_hours);
         $stmt->execute();
-        header('Location: http://zeiterfassung-wbh.de/Dashboard.html');
+        header('Location: http://zeiterfassung-wbh.de/Dashboard.php');
         exit;
     } else {
-        header('Location: http://zeiterfassung-wbh.de/Dashboard.html');
+        header('Location: http://zeiterfassung-wbh.de/Dashboard.php');
         exit;
     }
     $stmt->close();

@@ -21,7 +21,7 @@ if ($user !== false && password_verify($password, $user['password'])) {
     $_SESSION['userid'] = $user['id'];
     die(header('Location: http://zeiterfassung-wbh.de/Dashboard.html'));
 } else {
-    $errorMessage = 'Personalnummer oder Passwort bitte überprüfen. Weiter zum <a href="index.html">Login</a><br>';
+    $errorMessage = 'Fehler bei der Anmeldung, Personalnummer oder Passwort waren Falsch bitte <a href="index.html">hier</a> erneut einloggen.<br>';
 }
 
 if(isset($errorMessage)) {

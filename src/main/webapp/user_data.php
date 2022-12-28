@@ -80,5 +80,7 @@ if(mysqli_num_rows($result) > 0){
     <div style="text-align: left;"id="DashboardLink">
     <a  href="http://zeiterfassung-wbh.de/Dashboard.php" style="border-radius: 8px; width:20%;">Zurück zum Dashboard</a>
 </div>
+		<div class="footer">
+	</div>
 </body>
 </html>

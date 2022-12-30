@@ -168,14 +168,15 @@ if(mysqli_num_rows($result) > 0){
 <div class="aside" style="text-align: left;">
 <p><u>Ruhepausen:</u></p>
 <ul>
-<li>6h - 30 Minuten</li>
-<li>9h - 45 Minuten</li>
+<li>ab 6Stunden Arbeitszeit mindestens 30 Minuten Pause</li>
+<li>ab 9Stunden Arbeitszeit mindestens 45 Minuten Pause</li>
 </ul>
 <br>
 <p><u>Arbeitszeit</u></p>
 <ul>
 <li>max 8 Stunden pro Tag, in Ausnahmen 10 Stunden </li>
 <li>max 48 Stunden pro Woche, in Ausnahmen 60Stunden</li>
+<li>max 19 Tage in Folge Arbeiten</li>
 </ul>
 </div>
 <p><a href="https://www.gesetze-im-internet.de/arbzg/BJNR117100994.html" target="_blank">mehr zum Arbeitszeitgesetz</a></p>

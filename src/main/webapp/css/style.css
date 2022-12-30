@@ -140,7 +140,7 @@ a:hover, a:active {
 }
 a:link, a:visited {
   background-color: white;
-  color: blue;
+  color: darkblue;
   padding: 1px 1px;
   text-align: center;
   text-decoration: none;

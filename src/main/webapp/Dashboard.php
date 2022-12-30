@@ -196,6 +196,13 @@ if(mysqli_num_rows($result) > 0){
     				'success'
     			);
         	});
+    		$('#submitButtonTest').click(function(){
+    			Swal.fire(
+    				'Erfolg!',
+    				'Ihre Arbeitszerit wurde erfolgreich erfasst.',
+    				'success'
+    			);
+        	});
 		</script>
 </body>
 </html>

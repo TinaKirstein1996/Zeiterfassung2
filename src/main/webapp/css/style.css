@@ -147,6 +147,7 @@ a:link, a:visited {
   display: inline-block;
 }
 a.rechts:link, a.rechts:visited {
+	background-color: #161496;
 	color: white;
 	float: right;
 	  padding: 1px 10px; 

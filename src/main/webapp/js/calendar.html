@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zeiterfassungs Kalender</title>
+<link rel="icon" type="image/png" href="/image/wbh.png">
+<link rel="stylesheet" href = "css/calendarStyle.css">
+<link rel="stylesheet" href = "js/fullcalendar/lib/main.css">
+<link rel="stylesheet" href = "css/style.css">
+<script src="js/sweetalert2.all.min.js" defer></script>
+<script src="js/fullcalendar/lib/main.js" defer></script>
+	
+<script> 
+document.addEventListener('DOMContentLoaded', function() {
+	var calendarEl = document.getElementById('calendar');
+	var calendar = new FullCalendar.Calendar(calendarEl, {
+		initialView: 'dayGridMonth',
+		height: 650,
+		events: 'fetchEvents.php',
+		
+		selectable: true,
+		select: async function (start, end, allDay) {
+			const { value: formValues } = await Swal.fire({
+				title: 'Arbeitszeit erfassen',
+				html: 'Beginn: <input id="swalEvtStart" class="swal2-input" placeholder="Beginn eintragen" type="time">' + 
+				'<br>'+
+				'Ende: <input id = "swalEvtEnd" class="swal2-input" placeholder="Ende eintragen" type="time">' +
+				'<br>'+
+				'Pause: <input id = "swalEvtPause" class="swal2-input" placeholder="Pause eintragen" type="time">' +
+				'<br>'+
+				'Notiz: <input id = "swalEvtNote" class="swal2-input" placeholder="Notiz eintragen">',
+				
+				focusConfirm: false,
+				preConfirm: () => {
+					return [
+						document.getElementById('swalEvtStart').value,
+						document.getElementById('swalEvtEnd').value,
+						document.getElementById('swalEvtPause').value,
+						document.getElementById('swalEvtNote').value
+					]
+				}
+				
+			});
+			
+			if (formValues) {
+				fetch("eventHandler.php", {
+					method: "POST",
+					headers: {"Content-Type": "application/json" },
+					body: JSON.stringify({ request_type:'addEvent', start:start.startStr, end:start.endStr, 
+					event_data: formValues}),
+				})
+				.then(response => response.json())
+				.then(data => {
+					if (data.status == 1) {
+						Swal.fire('Arbeitszeit erfolgreich erfasst!', '', 'success');
+					} else {
+						Swal.fire(data.error, '', 'error');
+					}
+					
+					calendar.refetchEvents();
+				})
+				.catch(console.error);
+			}
+		},
+		
+		eventClick: function(info) {
+			info.jsEvent.preventDefault();
+			
+			info.el.style.borderColor = 'red';
+			
+			Swal.fire({
+				title: 'Arbeitszeiterfassung',
+				icon: 'info',
+				html:'<p> Beginn: '+info.event.extendedProps.start_time+'<br> Ende: '+info.event.extendedProps.end_time+'<br> Pause: '+info.event.extendedProps.pause_time+'<br> Notiz: '+info.event.extendedProps.note+'<br> Geleistete Stunden: '+info.event.extendedProps.working_hours,
+				showCloseButton: true,
+				showCancelButton: true,
+				cancelButtonText: 'Schließen',
+				confirmButtonText: 'Erfasste Zeit löschen',
+			}).then((result) => {
+				if (result.isConfirmed) {
+					fetch("eventHandler.php", {
+						method: "POST",
+						headers: {"Content-Type": "application/json" },
+						body: JSON.stringify({ request_type:'deleteEvent', event_id: info.event.id}),
+					})
+					.then(response => response.json())
+					.then(data => {
+						if (data.status == 1) {
+							Swal.fire('Arbeitszeit erfolgreich gelöscht!', '', 'success');
+						} else {
+							Swal.fire(data.error, '', 'error');
+						}
+						
+						calendar.refetchEvents();
+					})
+					.catch(console.error);
+				} else {
+					swal.close();
+				}
+			});
+			
+		}
+	});
+	calendar.render();
+});
+</script>
+</head>
+<body>
+	<div class="header"> 
+	 	<header>
+	 		<h2>Arbeitszeiterfassung Kalender </h2>
+	 	</header>
+	</div>
+	<div class = "container">
+		<div class= "wrapper">
+			<div id= "calendar"></div>
+		</div>
+	</div>
+	<p><a href="/Dashboard.php" >Zurück zum Dashboard</a></p>
+</body>
+</html>

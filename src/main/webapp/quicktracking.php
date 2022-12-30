@@ -29,7 +29,6 @@ if (mysqli_connect_error()){
         date_default_timezone_set('Europe/Berlin');
         $current_date = date('Y-m-d');
         
-        $title="Arbeitszeiterfassung ".$current_date."  ";
         $start_time = "SELECT start_time From users Where p_nr = ? Limit 1";
         $pause_time = "SELECT pause_time From users Where p_nr = ? Limit 1";
         $end_time = "SELECT end_time From users Where p_nr = ? Limit 1";
@@ -101,6 +100,7 @@ if (mysqli_connect_error()){
         }
         
         $working_hours = differenceInHours($worked_start,$worked_end, $worked_pause, $current_date);
+        $title="Zeit: ".$working_hours." h ";
         
         $stmt=$connect->prepare($INSERT);
         $stmt->bind_param("sissssss",$title, $p_nr, $current_date, $start_time, $pause_time, $end_time, $note, $working_hours);

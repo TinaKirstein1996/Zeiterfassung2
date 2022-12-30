@@ -14,3 +14,11 @@ month = date.getMonth() + 1;
 day = date.getDate();
 document.getElementById("current_date").innerHTML = "Heute, " + day + "." + month + "." + year;
 document.getElementById("current_date2").innerHTML = year + "-" + month + "-" + day;
+
+function quicktracking() {
+	Swal.fire(
+		'Erfolg!',
+		'Ihre Arbeitszerit wurde erfolgreich erfasst.',
+		'success'
+	)
+}

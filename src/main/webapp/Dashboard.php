@@ -162,8 +162,8 @@ if(mysqli_num_rows($result) > 0){
     			<div class="aside" style="text-align: left;">
     				<p><u>Ruhepausen:</u></p>
     				<ul>
-    					<li>ab 6Stunden Arbeitszeit mindestens 30 Minuten Pause</li>
-    					<li>ab 9Stunden Arbeitszeit mindestens 45 Minuten Pause</li>
+    					<li>ab 6 Stunden Arbeitszeit mindestens 30 Minuten Pause</li>
+    					<li>ab 9 Stunden Arbeitszeit mindestens 45 Minuten Pause</li>
     				</ul>
     				<br>
     				<p><u>Arbeitszeit</u></p>
@@ -183,8 +183,8 @@ if(mysqli_num_rows($result) > 0){
         <!-- Ende Rechte spalte -->
         <!-- Begibn Fuß spalte -->
     	<div class="footer">
-    		<p><a  href="/Impressum.html" class="rechts" target="_blank">Impressum</a></p>
-       		<p><a href="/Datenschutzerklärung.html" class="rechts" target="_blank">Datenschutzerklärung</a></p>		
+    		<p><a  href="/Impressum.html" class="rechts" >Impressum</a></p>
+       		<p><a href="/Datenschutzerklärung.html" class="rechts" >Datenschutzerklärung</a></p>		
     		<h4>.</h4>
     	<!-- Ende Fuß spalte -->
     	</div>	

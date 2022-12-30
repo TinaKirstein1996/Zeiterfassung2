@@ -57,7 +57,7 @@ if(mysqli_num_rows($result) > 0){
     			<br>
                 <!-- Tabelle Zeiteingabe -->
                 <table>
-                    <form action="data_management.php" method="POST">
+                    <form action="data_management.php" method="POST" onsubmit="return submitForm(this);">
                         <div hidden="hidden">
                         	<output id="current_date2" name="current_date"></output>
                         </div>
@@ -109,7 +109,7 @@ if(mysqli_num_rows($result) > 0){
                                     <!-- Senden -->
                                     <tr>
                                         <td colspan="2" style="padding-top: 15px;">
-                                        	<button  id="submitButtonTest" style="width:auto;" >Zeiten eintragen</button>
+                                        	<button id="submitButtonTest" style="width:auto;" >Zeiten eintragen</button>
                                         </td>
                              		</tr>
                         		</div>
@@ -183,26 +183,31 @@ if(mysqli_num_rows($result) > 0){
         <!-- Ende Rechte spalte -->
         <!-- Begibn Fuß spalte -->
     	<div class="footer">
-    		<h4><a  href="/Impressum.html" class="rechts" >Impressum</a></p>
-       		<a href="/Datenschutzerklärung.html" class="rechts" >Datenschutzerklärung</a></h4>		
-    		<h4>.</h4>
+    			<p> <a  href="/Impressum.html" class="rechts" >Impressum</a>
+    			<a href="/Datenschutzerklärung.html" class="rechts" >Datenschutzerklärung</a></p>		
     	<!-- Ende Fuß spalte -->
     	</div>	
     	<script>
     		$('#quicktracking').click(function(){
     			Swal.fire(
-    				'Erfolg!',
-    				'Ihre Arbeitszerit wurde erfolgreich erfasst.',
-    				'success'
+    	    			'Erfolg!',
+    	    			'Ihre Arbeitszerit wurde erfolgreich erfasst.',
+    	    			'success'
     			);
         	});
-    		$('#submitButtonTest').click(function(){
+    		function submitForm(form) {
     			Swal.fire(
-    				'Erfolg!',
-    				'Ihre Arbeitszerit wurde erfolgreich erfasst.',
-    				'success'
-    			);
-        	});
+    	    			'Erfolg!',
+        				'Ihre Arbeitszerit wurde erfolgreich erfasst.',
+        				'success'
+        		)
+        		.then((isOkay) => {
+            		if(isOkay) {
+                		form.submit();
+        			}
+        		});
+        		return false;
+    		}
 		</script>
 </body>
 </html>

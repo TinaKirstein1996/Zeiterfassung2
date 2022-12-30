@@ -43,7 +43,7 @@ if(mysqli_num_rows($result) > 0){
 <div class="header d-flex flex-row justify-content-start">
 	 		<h2 class="heading">Arbeitszeiterfassung</h2>
 <a  href="logout.php" class="rechts" >Logout</a>
-<p>.</p>
+<h4>.</h4>
 </form>
 </div>
 
@@ -191,7 +191,7 @@ if(mysqli_num_rows($result) > 0){
 <div class="footer">
 	<p><a  href="/Impressum.html" class="rechts" target="_blank">Impressum</a></p>
     <p><a href="/Datenschutzerklärung.html" class="rechts" target="_blank">Datenschutzerklärung</a></p>		
-<p>.</p>
+<h4>.</h4>
 <!-- Ende Fuß spalte -->
 </body>
 </html>

@@ -41,9 +41,9 @@ if(mysqli_num_rows($result) > 0){
 <body style="background-color: rgb(FFF)">
 
 <div class="header d-flex flex-row justify-content-start">
-<h2 class="heading">Arbeitszeiterfassung</h2>
-<form action="logout.php" method="POST">
-<button class="logoutbtn float-right">Logout</button>
+	 		<h2 class="heading">Arbeitszeiterfassung</h2>
+<a  href="logout.php" class="rechts" >Logout</a>
+<p>.</p>
 </form>
 </div>
 
@@ -189,9 +189,9 @@ if(mysqli_num_rows($result) > 0){
 <!-- Ende Rechte spalte -->
 <!-- Begibn Fuß spalte -->
 <div class="footer">
-    <p><a href="/Impressum.html" target="_blank">Impressum</a></p>
-    <p><a href="/Datenschutzerklärung.html" target="_blank">Datenschutzerklärung</a></p>		
-</div>
+	<p><a  href="/Impressum.html" class="rechts" target="_blank">Impressum</a></p>
+    <p><a href="/Datenschutzerklärung.html" class="rechts" target="_blank">Datenschutzerklärung</a></p>		
+<p>.</p>
 <!-- Ende Fuß spalte -->
 </body>
 </html>

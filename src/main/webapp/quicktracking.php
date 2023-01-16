@@ -29,26 +29,26 @@ if (mysqli_connect_error()){
         date_default_timezone_set('Europe/Berlin');
         $current_date = date('Y-m-d');
         
-        $start_time = "SELECT start_time From users Where p_nr = ? Limit 1";
-        $pause_time = "SELECT pause_time From users Where p_nr = ? Limit 1";
-        $end_time = "SELECT end_time From users Where p_nr = ? Limit 1";
+        $start_time_sql = "SELECT start_time From users Where p_nr = ? Limit 1";
+        $pause_time_sql = "SELECT pause_time From users Where p_nr = ? Limit 1";
+        $end_time_sql = "SELECT end_time From users Where p_nr = ? Limit 1";
         $note = "Schnellerfassung";
         
-        $stmt = $connect->prepare($start_time);
+        $stmt = $connect->prepare($start_time_sql);
         $stmt->bind_param("i", $p_nr);
         $stmt->execute();
         $stmt->bind_result($start_time);
         $stmt->fetch();
         $stmt->close();
         
-        $stmt = $connect->prepare($pause_time);
+        $stmt = $connect->prepare($pause_time_sql);
         $stmt->bind_param("i", $p_nr);
         $stmt->execute();
         $stmt->bind_result($pause_time);
         $stmt->fetch();
         $stmt->close();
         
-        $stmt = $connect->prepare($end_time);
+        $stmt = $connect->prepare($end_time_sql);
         $stmt->bind_param("i", $p_nr);
         $stmt->execute();
         $stmt->bind_result($end_time);
@@ -59,8 +59,6 @@ if (mysqli_connect_error()){
         $worked_start = $current_date." ".$start_time;
         $worked_pause = $current_date." ".$pause_time;
         $worked_end = $current_date." ".$end_time;
-        $starttimestamp = strtotime($worked_start);
-        $endtimestamp = strtotime($worked_end);
         
         function differenceInHours($worked_start,$worked_end,$worked_pause, $date){
             $starttimestamp = strtotime($worked_start);

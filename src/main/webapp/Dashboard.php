@@ -118,8 +118,8 @@ if(mysqli_num_rows($result) > 0){
                 </table>
     
     			<div>
-    				<form action="quicktracking.php" method="POST">
-    					<button class=quicktrackingbtn type="button" id="quicktracking" style="width:auto;">Schnellerfassung</button>
+    				<form action="quicktracking.php" method="POST" onsubmit="return submitForm(this);">
+    					<button class=quicktrackingbtn id="quicktracking" style="width:auto;">Schnellerfassung</button>
     				</form>
     			</div>
     
@@ -183,18 +183,12 @@ if(mysqli_num_rows($result) > 0){
         <!-- Ende Rechte spalte -->
         <!-- Begibn Fuß spalte -->
     	<div class="footer">
-    			<p> <a  href="/Impressum.html" class="rechts" >Impressum</a>
-    			<a href="/Datenschutzerklärung.html" class="rechts" >Datenschutzerklärung</a></p>		
+    		<h4><a  href="/Impressum.html" class="rechts" >Impressum</a></p>
+       		<a href="/Datenschutzerklärung.html" class="rechts" >Datenschutzerklärung</a></h4>		
+    		<h4>.</h4>
     	<!-- Ende Fuß spalte -->
     	</div>	
     	<script>
-    		$('#quicktracking').click(function(){
-    			Swal.fire(
-    	    			'Erfolg!',
-    	    			'Ihre Arbeitszerit wurde erfolgreich erfasst.',
-    	    			'success'
-    			);
-        	});
     		function submitForm(form) {
     			Swal.fire(
     	    			'Erfolg!',
